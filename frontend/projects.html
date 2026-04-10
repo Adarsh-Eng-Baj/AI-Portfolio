@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — Adarsh Sutar Portfolio</title>
+  <meta name="description" content="Explore AI/ML and full-stack projects built by Adarsh Sutar — from NLP resume analyzers to AI farming assistants." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script>window.API_BASE_URL = 'http://localhost:5000/api';</script>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="main-navbar">
+    <div class="nav-container">
+      <a href="/index.html" class="nav-logo">Adarsh Dev.</a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/index.html"    class="nav-link" data-i18n="nav.home">Home</a></li>
+        <li><a href="/about.html"    class="nav-link" data-i18n="nav.about">About</a></li>
+        <li><a href="/projects.html" class="nav-link active" data-i18n="nav.projects">Projects</a></li>
+        <li><a href="/skills.html"   class="nav-link" data-i18n="nav.skills">Skills</a></li>
+        <li><a href="/blog.html"     class="nav-link" data-i18n="nav.blog">Blog</a></li>
+        <li><a href="/contact.html"  class="nav-link" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="lang-toggle" id="lang-toggle-btn">हिं</button>
+        <button class="theme-toggle" id="theme-toggle-btn">☀️</button>
+        <button class="nav-hamburger" id="nav-hamburger"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-header-bg"></div>
+    <div class="container" style="position:relative; z-index:1;">
+      <p class="section-label" data-i18n="projects.label">My Work</p>
+      <h1 data-i18n="projects.title">Projects</h1>
+      <p style="max-width:600px; margin: var(--space-md) auto; font-size: var(--text-lg);" data-i18n="projects.subtitle">
+        AI-powered applications, full-stack systems, and everything in between.
+      </p>
+    </div>
+  </div>
+
+  <!-- FILTER & SEARCH -->
+  <section class="section" style="padding-top: var(--space-xl);">
+    <div class="container">
+
+      <!-- Search Bar -->
+      <div style="max-width:500px; margin: 0 auto var(--space-xl); position:relative;">
+        <input
+          type="text"
+          id="project-search"
+          class="form-input"
+          placeholder="🔍 Search projects..."
+          data-i18n="projects.search"
+          aria-label="Search projects"
+          style="padding-left: 16px;"
+        />
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="filter-tabs" id="filter-tabs">
+        <button class="filter-tab active" data-category="all" data-i18n="projects.all">All</button>
+        <!-- Categories loaded dynamically -->
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="grid-3" id="projects-grid">
+        <div class="loading-overlay" style="grid-column:1/-1;">
+          <div class="spinner"></div>
+          <p>Loading projects...</p>
+        </div>
+      </div>
+
+      <!-- No results -->
+      <div id="no-results" style="display:none; text-align:center; padding: var(--space-3xl);">
+        <p style="font-size:3rem;">🔍</p>
+        <h3>No projects found</h3>
+        <p style="color:var(--clr-text-muted);">Try a different search or category filter.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROJECT DETAIL MODAL -->
+  <div class="modal-overlay" id="project-modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal" id="project-modal">
+      <div class="modal-header">
+        <h3 id="modal-title">Project Title</h3>
+        <button onclick="closeProjectModal()" style="font-size:1.5rem; color:var(--clr-text-muted);">✕</button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+      <div class="modal-footer" id="modal-footer"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2025 Adarsh Sutar. Built with ❤️ &amp; Python.</p>
+        <a href="/index.html" class="footer-copy" style="color:var(--clr-purple);">← Back to Home</a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toast-container"></div>
+
+  <!-- SCRIPTS -->
+    <script src="/js/error_handler.js"></script>
+  <script src="/js/main.js?v=2"></script>
+  <script src="/js/api.js?v=2"></script>
+  <script src="/js/i18n.js?v=2"></script>
+  <script src="/js/analytics.js?v=2"></script>
+  <script src="/js/chatbot.js?v=2"></script>
+
+  <script>
+    let allProjects = [];
+    let activeCategory = 'all';
+    let searchQuery = '';
+
+    // ── Load Projects & Categories ─────────────────────
+    async function init() {
+      await Promise.all([loadCategories(), loadProjects()]);
+    }
+
+    async function loadCategories() {
+      try {
+        const { categories } = await API.projects.categories();
+        const tabs = document.getElementById('filter-tabs');
+        categories.forEach(cat => {
+          if (cat === 'All') return;
+          const btn = document.createElement('button');
+          btn.className = 'filter-tab';
+          btn.dataset.category = cat.toLowerCase();
+          btn.textContent = cat;
+          btn.addEventListener('click', () => setFilter(cat.toLowerCase()));
+          tabs.appendChild(btn);
+        });
+      } catch (_) {}
+    }
+
+    async function loadProjects() {
+      const grid = document.getElementById('projects-grid');
+      try {
+        const { projects } = await API.projects.list();
+        allProjects = projects;
+        renderProjects(projects);
+      } catch (err) {
+        grid.innerHTML = `
+          <div style="grid-column:1/-1;text-align:center;padding:var(--space-3xl);">
+            <p style="font-size:2rem;">⚠️</p>
+            <h3>Backend not connected</h3>
+            <p style="color:var(--clr-text-muted)">Start the Flask backend with <code style="color:var(--clr-cyan)">python run.py</code></p>
+          </div>`;
+      }
+    }
+
+    function renderProjects(projects) {
+      const grid = document.getElementById('projects-grid');
+      const noResults = document.getElementById('no-results');
+
+      if (!projects.length) {
+        grid.innerHTML = '';
+        noResults.style.display = 'block';
+        return;
+      }
+      noResults.style.display = 'none';
+
+      grid.innerHTML = projects.map((p, i) => `
+        <div class="project-card animate-on-scroll stagger-${(i % 3) + 1}" onclick="openProjectModal(${p.id})">
+          <div class="project-image-wrapper">
+            ${p.featured ? '<span class="badge-featured">⭐ Featured</span>' : ''}
+            <img src="${p.image_url || 'https://via.placeholder.com/600x200/7c3aed/white?text=Project'}"
+                 alt="${p.title}" class="project-image" loading="lazy"
+                 onerror="this.src='https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&q=80'" />
+            <div class="project-overlay" onclick="event.stopPropagation()">
+              ${p.demo_url && p.demo_url !== '#' ? `<a href="${p.demo_url}" target="_blank" class="btn btn-primary btn-sm">🔗 Demo</a>` : ''}
+              ${p.github_url ? `<a href="${p.github_url}" target="_blank" class="btn btn-outline btn-sm">🐙 Code</a>` : ''}
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-category">${p.category || ''}</div>
+            <h3 class="project-title">${p.title}</h3>
+            <p class="project-desc">${truncate(p.description, 120)}</p>
+            <div class="project-tech">
+              ${(p.tech_stack || []).slice(0,5).map(t => `<span class="tech-tag">${t.trim()}</span>`).join('')}
+            </div>
+          </div>
+        </div>`
+      ).join('');
+
+      ScrollAnimations.init();
+    }
+
+    // ── Filter ─────────────────────────────────────────
+    function setFilter(category) {
+      activeCategory = category;
+      document.querySelectorAll('.filter-tab').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.category === category);
+      });
+      applyFilters();
+    }
+
+    document.getElementById('filter-tabs').querySelector('[data-category="all"]')
+      .addEventListener('click', () => setFilter('all'));
+
+    // ── Search ─────────────────────────────────────────
+    document.getElementById('project-search').addEventListener('input', debounce(e => {
+      searchQuery = e.target.value.toLowerCase();
+      applyFilters();
+    }, 300));
+
+    function applyFilters() {
+      let filtered = [...allProjects];
+      if (activeCategory !== 'all') {
+        filtered = filtered.filter(p => p.category?.toLowerCase() === activeCategory);
+      }
+      if (searchQuery) {
+        filtered = filtered.filter(p =>
+          p.title.toLowerCase().includes(searchQuery) ||
+          p.description?.toLowerCase().includes(searchQuery) ||
+          (p.tech_stack || []).some(t => t.toLowerCase().includes(searchQuery))
+        );
+      }
+      renderProjects(filtered);
+    }
+
+    // ── Project Modal ──────────────────────────────────
+    async function openProjectModal(id) {
+      const project = allProjects.find(p => p.id === id);
+      if (!project) return;
+
+      document.getElementById('modal-title').textContent = project.title;
+      document.getElementById('modal-body').innerHTML = `
+        <img src="${project.image_url}" alt="${project.title}" style="width:100%;border-radius:var(--radius-md);margin-bottom:var(--space-lg);"
+             onerror="this.style.display='none'" />
+        <p class="section-label">${project.category}</p>
+        <p style="margin-bottom:var(--space-md);">${project.long_description || project.description}</p>
+        <div style="margin-bottom:var(--space-md);">
+          <strong>Technologies:</strong>
+          <div class="project-tech" style="margin-top:8px;">
+            ${(project.tech_stack || []).map(t => `<span class="tech-tag">${t.trim()}</span>`).join('')}
+          </div>
+        </div>
+        <div class="badge badge-${project.status === 'completed' ? 'green' : 'orange'}">${project.status}</div>
+      `;
+      document.getElementById('modal-footer').innerHTML = `
+        ${project.github_url ? `<a href="${project.github_url}" target="_blank" class="btn btn-outline">🐙 View Code</a>` : ''}
+        ${project.demo_url && project.demo_url !== '#' ? `<a href="${project.demo_url}" target="_blank" class="btn btn-primary">🔗 Live Demo</a>` : ''}
+        <button class="btn btn-ghost" onclick="closeProjectModal()">Close</button>
+      `;
+      document.getElementById('project-modal-overlay').classList.add('open');
+    }
+
+    function closeProjectModal() {
+      document.getElementById('project-modal-overlay').classList.remove('open');
+    }
+
+    document.getElementById('project-modal-overlay').addEventListener('click', e => {
+      if (e.target === e.currentTarget) closeProjectModal();
+    });
+
+    // Init
+    init();
+  </script>
+
+</body>
+</html>

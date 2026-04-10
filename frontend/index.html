@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adarsh Sutar — AI/ML Developer & CSE Student</title>
+  <meta name="description" content="Portfolio of Adarsh Sutar, B.Tech CSE-AI student at GIET Bhubaneswar. Building AI-powered applications, ML models, and full-stack web apps." />
+  <meta name="keywords" content="Adarsh Sutar, AI developer, ML engineer, CSE student, Flask, Python, portfolio" />
+  <meta property="og:title" content="Adarsh Sutar — AI/ML Developer" />
+  <meta property="og:description" content="B.Tech CSE-AI student crafting intelligent solutions with Python, Machine Learning, and Full-Stack Development." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script>
+    // Set API base URL (change to your Render backend URL in production)
+    window.API_BASE_URL = 'http://localhost:5000/api';
+  </script>
+</head>
+<body>
+
+  <!-- ═══ NAVBAR ═══ -->
+  <nav class="navbar" id="main-navbar">
+    <div class="nav-container">
+      <a href="/index.html" class="nav-logo">Adarsh Dev.</a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/index.html"    class="nav-link active" data-i18n="nav.home">Home</a></li>
+        <li><a href="/about.html"    class="nav-link" data-i18n="nav.about">About</a></li>
+        <li><a href="/projects.html" class="nav-link" data-i18n="nav.projects">Projects</a></li>
+        <li><a href="/skills.html"   class="nav-link" data-i18n="nav.skills">Skills</a></li>
+        <li><a href="/blog.html"     class="nav-link" data-i18n="nav.blog">Blog</a></li>
+        <li><a href="/contact.html"  class="nav-link" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="lang-toggle" id="lang-toggle-btn" aria-label="Toggle language">हिं</button>
+        <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle theme">☀️</button>
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+      <div class="hero-orb hero-orb-3"></div>
+      <div class="hero-grid"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        <span data-i18n="hero.badge">Open to Internships & Collaborations</span>
+      </div>
+
+      <h1 class="hero-title">
+        <span data-i18n="hero.greeting">Hi, I'm </span>
+        <span class="gradient-text">Adarsh Sutar</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        <span data-i18n="hero.subtitle_prefix">B.Tech CSE-AI Student · </span>
+        <span class="typing-wrapper"><span id="typing-text"></span></span>
+      </p>
+
+      <div class="hero-cta">
+        <a href="/projects.html" class="btn btn-primary btn-lg" data-i18n="hero.cta_projects">View My Projects</a>
+        <a href="#" class="btn btn-outline btn-lg" id="download-resume-btn" data-i18n="hero.cta_resume">
+          📄 Download Resume
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num" data-count="6" data-suffix="+">0+</div>
+          <div class="hero-stat-label" data-i18n="hero.stat_projects">Projects Built</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num" data-count="5" data-suffix="+">0+</div>
+          <div class="hero-stat-label" data-i18n="hero.stat_techs">Technologies</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num" data-count="8" data-suffix=".2">0</div>
+          <div class="hero-stat-label" data-i18n="hero.stat_cgpa">CGPA / 10</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num" data-count="2" data-suffix="nd Yr">0nd</div>
+          <div class="hero-stat-label" data-i18n="hero.stat_year">B.Tech Year</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">↓</div>
+  </section>
+
+  <!-- ═══ FEATURED PROJECTS ═══ -->
+  <section class="section" id="featured-projects">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <p class="section-label" data-i18n="home.featured_label">Featured Work</p>
+        <h2 data-i18n="home.featured_title">My Best Projects</h2>
+        <p data-i18n="home.featured_desc">AI-powered applications and full-stack systems I've built from scratch.</p>
+      </div>
+
+      <div class="grid-3" id="featured-projects-grid">
+        <!-- Loaded dynamically via API -->
+        <div class="loading-overlay">
+          <div class="spinner"></div>
+          <p>Loading projects...</p>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin-top: var(--space-2xl);">
+        <a href="/projects.html" class="btn btn-outline btn-lg" data-i18n="home.view_all">View All Projects →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SKILLS SNAPSHOT ═══ -->
+  <section class="section" style="background: var(--clr-surface);" id="skills-snapshot">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <p class="section-label">Tech Stack</p>
+        <h2 data-i18n="home.skills_title">What I Work With</h2>
+      </div>
+
+      <div id="skills-chips" style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center;">
+        <!-- Loaded dynamically -->
+      </div>
+
+      <div style="text-align:center; margin-top: var(--space-2xl);">
+        <a href="/skills.html" class="btn btn-ghost" data-i18n="home.all_skills">See All Skills →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ABOUT SNIPPET ═══ -->
+  <section class="section" id="about-snippet">
+    <div class="container">
+      <div class="grid-2" style="align-items:center; gap: var(--space-3xl);">
+
+        <!-- Left: Text -->
+        <div class="animate-on-scroll">
+          <p class="section-label" data-i18n="home.about_label">Who I Am</p>
+          <h2 data-i18n="home.about_title">Passionate AI & Full-Stack Developer</h2>
+          <p style="margin: var(--space-lg) 0;" data-i18n="home.about_desc">
+            I'm Adarsh Sutar, a 2nd-year B.Tech CSE-AI student at Gandhi Institute of Excellent Technocrats (GIET), Bhubaneswar.
+            I build real-world AI solutions — from crop disease detection for farmers to NLP-powered resume analyzers.
+            My code bridges cutting-edge AI &amp; Cloud (AWS) with user-friendly web interfaces.
+          </p>
+          <div style="display:flex; flex-wrap:wrap; gap: var(--space-md);">
+            <a href="/about.html" class="btn btn-primary" data-i18n="home.learn_more">Learn More About Me</a>
+            <a href="/contact.html" class="btn btn-outline" data-i18n="home.contact_me">Contact Me</a>
+          </div>
+        </div>
+
+        <!-- Right: Cards -->
+        <div class="animate-on-scroll stagger-2">
+          <div style="display:flex; flex-direction:column; gap: var(--space-md);">
+            <div class="card" style="display:flex; align-items:center; gap: var(--space-lg);">
+              <div style="font-size:2.5rem;">🧠</div>
+              <div>
+                <h4 data-i18n="home.card1_title">AI / Machine Learning</h4>
+                <p style="font-size:var(--text-sm);" data-i18n="home.card1_desc">TensorFlow, Scikit-learn, OpenCV, NLP, Computer Vision</p>
+              </div>
+            </div>
+            <div class="card" style="display:flex; align-items:center; gap: var(--space-lg);">
+              <div style="font-size:2.5rem;">🌐</div>
+              <div>
+                <h4 data-i18n="home.card2_title">Full-Stack Development</h4>
+                <p style="font-size:var(--text-sm);" data-i18n="home.card2_desc">Python Flask, FastAPI, React, HTML/CSS/JS, REST APIs</p>
+              </div>
+            </div>
+            <div class="card" style="display:flex; align-items:center; gap: var(--space-lg);">
+              <div style="font-size:2.5rem;">☁️</div>
+              <div>
+                <h4 data-i18n="home.card3_title">Cloud Computing (AWS)</h4>
+                <p style="font-size:var(--text-sm);" data-i18n="home.card3_desc">EC2, S3, Lambda, IAM — building scalable cloud-native apps</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA BANNER ═══ -->
+  <section class="section" id="cta-section">
+    <div class="container">
+      <div class="card" style="text-align:center; padding: var(--space-3xl); background: var(--gradient-soft); border-color: rgba(124,58,237,0.3); max-width:800px; margin:0 auto;">
+        <h2 data-i18n="home.cta_title">Let's Build Something Amazing Together! 🚀</h2>
+        <p style="max-width:500px; margin: var(--space-md) auto;" data-i18n="home.cta_desc">
+          Looking for an internship, freelance project, or just want to collaborate? I'd love to hear from you.
+        </p>
+        <a href="/contact.html" class="btn btn-primary btn-lg" style="margin-top: var(--space-lg);" data-i18n="home.cta_btn">Get In Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo gradient-text">Adarsh Dev.</div>
+          <p class="footer-desc">B.Tech CSE-AI student passionate about AI/ML and building impactful tech solutions.</p>
+          <div class="footer-social">
+            <a href="https://github.com/Adarsh-Eng-Baj" target="_blank" class="social-link" aria-label="GitHub">🐙</a>
+            <a href="https://www.linkedin.com/in/adarsha-sutar-80807532b/" target="_blank" class="social-link" aria-label="LinkedIn">💼</a>
+            <a href="https://x.com/adarsha_sutar" target="_blank" class="social-link" aria-label="Twitter">🐦</a>
+            <a href="https://www.instagram.com/_adarsh88/?utm_source=gr&r=nametag" target="_blank" class="social-link" aria-label="Instagram">📸</a>
+            <a href="mailto:adarshasutar24@gmail.com" class="social-link" aria-label="Email">📧</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-col-title" data-i18n="footer.navigate">Navigate</h4>
+          <nav class="footer-links">
+            <a href="/index.html"    class="footer-link" data-i18n="nav.home">Home</a>
+            <a href="/about.html"    class="footer-link" data-i18n="nav.about">About</a>
+            <a href="/projects.html" class="footer-link" data-i18n="nav.projects">Projects</a>
+            <a href="/skills.html"   class="footer-link" data-i18n="nav.skills">Skills</a>
+          </nav>
+        </div>
+        <div>
+          <h4 class="footer-col-title" data-i18n="footer.connect">Connect</h4>
+          <nav class="footer-links">
+            <a href="/contact.html" class="footer-link" data-i18n="nav.contact">Contact</a>
+            <a href="#" id="footer-resume-btn" class="footer-link" data-i18n="footer.resume">Download Resume</a>
+            <a href="/blog.html"    class="footer-link" data-i18n="nav.blog">Blog</a>
+            <a href="/admin/login.html" class="footer-link">Admin</a>
+          </nav>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2025 Adarsh Sutar. Built with ❤️ &amp; Python.</p>
+        <p class="footer-copy" style="color:var(--clr-purple);">B.Tech CSE-AI • GIET Bhubaneswar</p>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toast-container"></div>
+
+  <!-- ═══ SCRIPTS ═══ -->
+    <script src="/js/error_handler.js"></script>
+  <script src="/js/main.js?v=2"></script>
+  <script src="/js/api.js?v=2"></script>
+  <script src="/js/i18n.js?v=2"></script>
+  <script src="/js/analytics.js?v=2"></script>
+  <script src="/js/chatbot.js?v=2"></script>
+
+  <script>
+    // ── Typing Effect ──────────────────────────────────
+    const typingPhrases = [
+      'AI/ML Engineer 🧠',
+      'Python Developer 🐍',
+      'Full-Stack Builder 🌐',
+      'Computer Vision Enthusiast 👁️',
+      'Open Source Contributor 🐙',
+    ];
+    startTypingEffect('typing-text', typingPhrases, 75);
+
+    // ── Load Featured Projects ─────────────────────────
+    async function loadFeaturedProjects() {
+      const grid = document.getElementById('featured-projects-grid');
+      try {
+        const { projects } = await API.projects.list({ featured: 'true' });
+        grid.innerHTML = '';
+        projects.slice(0, 3).forEach((p, i) => {
+          grid.innerHTML += renderProjectCard(p, i);
+        });
+      } catch (err) {
+        grid.innerHTML = `
+          <div style="grid-column:1/-1; text-align:center; padding: var(--space-2xl);">
+            <p style="color:var(--clr-text-muted);">⚠️ Could not load projects. Make sure the backend is running on port 5000.</p>
+          </div>`;
+      }
+    }
+
+    function renderProjectCard(p, delay = 0) {
+      const tech = (p.tech_stack || []).slice(0, 4).map(t => `<span class="tech-tag">${t.trim()}</span>`).join('');
+      return `
+        <div class="project-card animate-on-scroll stagger-${delay + 1}">
+          <div class="project-image-wrapper">
+            ${p.featured ? '<span class="badge-featured">⭐ Featured</span>' : ''}
+            <img src="${p.image_url || 'https://via.placeholder.com/600x200/7c3aed/white?text=Project'}"
+                 alt="${p.title}" class="project-image" loading="lazy"
+                 onerror="this.src='https://via.placeholder.com/600x200/7c3aed/white?text=${encodeURIComponent(p.title)}'" />
+            <div class="project-overlay">
+              ${p.demo_url && p.demo_url !== '#' ? `<a href="${p.demo_url}" target="_blank" class="btn btn-primary btn-sm">🔗 Demo</a>` : ''}
+              ${p.github_url ? `<a href="${p.github_url}" target="_blank" class="btn btn-outline btn-sm">🐙 Code</a>` : ''}
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-category">${p.category || 'Project'}</div>
+            <h3 class="project-title">${p.title}</h3>
+            <p class="project-desc">${truncate(p.description, 120)}</p>
+            <div class="project-tech">${tech}</div>
+          </div>
+        </div>`;
+    }
+    window.renderProjectCard = renderProjectCard;
+
+    // ── Load Skills Chips ──────────────────────────────
+    async function loadSkillChips() {
+      try {
+        const { skills } = await API.skills.list();
+        if (skills && skills.length) {
+          // Shuffle and take top 10 for snapshot
+          const shuffled = skills.sort(() => 0.5 - Math.random()).slice(0, 10);
+          document.getElementById('skills-chips').innerHTML = shuffled.map(s =>
+            `<span class="tech-tag" style="font-size:var(--text-sm); padding:8px 18px;">${s.name} ${s.icon || ''}</span>`
+          ).join('');
+        }
+      } catch (_) {
+        // Fallback to static chips if backend fails
+        const chips = ['Python','TensorFlow','Flask','OpenCV','React','MySQL','NumPy','JavaScript','Scikit-learn','Git'];
+        document.getElementById('skills-chips').innerHTML = chips.map(c =>
+          `<span class="tech-tag" style="font-size:var(--text-sm); padding:8px 18px;">${c}</span>`
+        ).join('');
+      }
+    }
+
+    // ── Resume Download ────────────────────────────────
+    document.getElementById('download-resume-btn').href = API.resume.downloadUrl();
+    document.getElementById('footer-resume-btn').href = API.resume.downloadUrl();
+
+    // Initialize page
+    loadFeaturedProjects();
+    loadSkillChips();
+    ScrollAnimations.init();
+  </script>
+
+</body>
+</html>

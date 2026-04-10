@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Adarsh Dev. | AI, Cloud & Web Dev Insights</title>
+  <meta name="description" content="Tech articles by Adarsh Sutar on AI/ML, AWS Cloud Computing, Flask/Python backend development, and full-stack engineering." />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script>window.API_BASE_URL = 'http://localhost:5000/api';</script>
+  <style>
+    /* ── Blog-specific styles ── */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: var(--space-xl);
+    }
+
+    .blog-card {
+      background: var(--clr-card);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+    }
+    .blog-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(124,58,237,0.4);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .blog-cover {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .blog-card:hover .blog-cover { transform: scale(1.05); }
+
+    .blog-cover-wrapper {
+      overflow: hidden;
+      height: 200px;
+      position: relative;
+    }
+
+    .blog-category-badge {
+      position: absolute;
+      top: var(--space-md);
+      left: var(--space-md);
+      padding: 4px 12px;
+      background: var(--gradient);
+      border-radius: var(--radius-full);
+      font-size: var(--text-xs);
+      font-weight: 700;
+      color: white;
+      z-index: 2;
+    }
+
+    .blog-body {
+      padding: var(--space-xl);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .blog-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      font-size: var(--text-xs);
+      color: var(--clr-text-dim);
+      margin-bottom: var(--space-md);
+    }
+
+    .blog-title {
+      font-size: var(--text-lg);
+      font-weight: 700;
+      margin-bottom: var(--space-sm);
+      color: var(--clr-text);
+      line-height: 1.4;
+    }
+
+    .blog-excerpt {
+      font-size: var(--text-sm);
+      color: var(--clr-text-muted);
+      flex: 1;
+      margin-bottom: var(--space-lg);
+      line-height: 1.6;
+    }
+
+    .blog-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      margin-bottom: var(--space-md);
+    }
+
+    .blog-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--clr-border);
+      padding-top: var(--space-md);
+      margin-top: auto;
+    }
+
+    .blog-read-btn {
+      padding: 8px 20px;
+      background: var(--gradient);
+      color: white;
+      border-radius: var(--radius-md);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition-fast);
+    }
+    .blog-read-btn:hover { opacity: 0.9; transform: translateX(2px); }
+
+    .blog-views {
+      font-size: var(--text-xs);
+      color: var(--clr-text-dim);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Category filter tabs */
+    .category-filter {
+      display: flex;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: var(--space-2xl);
+    }
+
+    /* Featured post hero */
+    .featured-post {
+      background: var(--clr-card);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-bottom: var(--space-3xl);
+      transition: var(--transition);
+    }
+    .featured-post:hover {
+      border-color: rgba(124,58,237,0.4);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .featured-post-img {
+      width: 100%;
+      height: 100%;
+      min-height: 320px;
+      object-fit: cover;
+    }
+
+    .featured-post-body {
+      padding: var(--space-2xl);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .featured-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      background: rgba(124,58,237,0.15);
+      border: 1px solid rgba(124,58,237,0.3);
+      border-radius: var(--radius-full);
+      font-size: var(--text-xs);
+      color: #a78bfa;
+      font-weight: 600;
+      margin-bottom: var(--space-md);
+      width: fit-content;
+    }
+
+    .featured-post-title {
+      font-size: var(--text-3xl);
+      font-weight: 800;
+      margin-bottom: var(--space-md);
+      line-height: 1.2;
+    }
+
+    /* Blog post modal */
+    .post-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px);
+      z-index: 3000;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: var(--space-xl);
+      overflow-y: auto;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition);
+    }
+    .post-modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .post-modal {
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-xl);
+      width: 100%;
+      max-width: 800px;
+      padding: var(--space-2xl);
+      margin: var(--space-xl) 0;
+      transform: translateY(30px);
+      transition: var(--transition);
+    }
+    .post-modal-overlay.open .post-modal { transform: translateY(0); }
+
+    .post-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--space-xl);
+      gap: var(--space-lg);
+    }
+
+    .post-modal-close {
+      width: 36px; height: 36px;
+      border-radius: var(--radius-full);
+      background: var(--clr-card);
+      border: 1px solid var(--clr-border);
+      color: var(--clr-text);
+      font-size: 18px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: var(--transition-fast);
+    }
+    .post-modal-close:hover { background: var(--clr-card-hover); }
+
+    .post-modal-cover {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--space-xl);
+    }
+
+    .post-content {
+      font-size: var(--text-base);
+      color: var(--clr-text-muted);
+      line-height: 1.8;
+    }
+    .post-content h2 { color: var(--clr-text); margin: var(--space-xl) 0 var(--space-md); font-size: var(--text-2xl); }
+    .post-content h3 { color: var(--clr-text); margin: var(--space-lg) 0 var(--space-sm); }
+    .post-content p { margin-bottom: var(--space-md); }
+    .post-content pre {
+      background: var(--clr-surface2);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      overflow-x: auto;
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      margin: var(--space-md) 0;
+    }
+    .post-content code {
+      font-family: var(--font-mono);
+      background: var(--clr-surface2);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+      color: var(--clr-cyan);
+    }
+
+    /* Newsletter/CTA section */
+    .newsletter-section {
+      background: var(--gradient-soft);
+      border: 1px solid rgba(124,58,237,0.2);
+      border-radius: var(--radius-xl);
+      padding: var(--space-2xl);
+      text-align: center;
+      margin-top: var(--space-3xl);
+    }
+
+    @media (max-width: 768px) {
+      .blog-grid { grid-template-columns: 1fr; }
+      .featured-post { grid-template-columns: 1fr; }
+      .featured-post-img { min-height: 200px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="/index.html" class="nav-logo">Adarsh Dev.</a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/index.html" class="nav-link">Home</a></li>
+        <li><a href="/projects.html" class="nav-link">Projects</a></li>
+        <li><a href="/skills.html" class="nav-link">Skills</a></li>
+        <li><a href="/about.html" class="nav-link">About</a></li>
+        <li><a href="/blog.html" class="nav-link active">Blog</a></li>
+        <li><a href="/contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" title="Toggle theme">🌙</button>
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="page-header-bg"></div>
+    <div class="container">
+      <p class="section-label">💡 Writing & Learning</p>
+      <h1>My <span class="gradient-text">Dev Blog</span></h1>
+      <p style="max-width:600px;margin:var(--space-md) auto 0;font-size:var(--text-lg);">
+        Articles on AI/ML, AWS Cloud Computing, Python backends, and everything I'm learning as a dev.
+      </p>
+    </div>
+  </header>
+
+  <main>
+    <!-- Featured Post -->
+    <section class="section" style="padding-top: var(--space-xl);" id="featured-section">
+      <div class="container">
+        <div id="featured-post-container"></div>
+      </div>
+    </section>
+
+    <!-- Category Filter -->
+    <section style="padding-bottom: var(--space-lg);">
+      <div class="container">
+        <div class="category-filter" id="category-filter">
+          <button class="filter-tab active" data-cat="all">All Posts</button>
+          <button class="filter-tab" data-cat="AI/ML">🧠 AI/ML</button>
+          <button class="filter-tab" data-cat="Cloud">☁️ Cloud</button>
+          <button class="filter-tab" data-cat="Web Dev">🌐 Web Dev</button>
+          <button class="filter-tab" data-cat="General">📝 General</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- All Posts Grid -->
+    <section class="section" style="padding-top: 0;">
+      <div class="container">
+        <div id="posts-container">
+          <div class="loading-overlay">
+            <div class="spinner"></div>
+            <p>Loading articles...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter CTA -->
+    <section class="section" style="padding-top: 0;">
+      <div class="container">
+        <div class="newsletter-section animate-on-scroll">
+          <div style="font-size:3rem;margin-bottom:var(--space-md);">✉️</div>
+          <h2 style="margin-bottom:var(--space-sm);">Want More Content?</h2>
+          <p style="margin-bottom:var(--space-xl);max-width:500px;margin-left:auto;margin-right:auto;">
+            I write about AI, Cloud, and Web Dev. Reach me directly and I'll let you know when I publish new posts.
+          </p>
+          <a href="/contact.html" class="btn btn-primary btn-lg">📬 Get in Touch</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Blog Post Reading Modal -->
+  <div class="post-modal-overlay" id="post-modal-overlay">
+    <div class="post-modal" id="post-modal">
+      <div class="post-modal-header">
+        <div>
+          <div id="modal-category" style="font-size:var(--text-xs);color:var(--clr-purple);font-weight:600;margin-bottom:var(--space-sm);text-transform:uppercase;letter-spacing:.05em;"></div>
+          <h1 id="modal-title" style="font-size:var(--text-3xl);line-height:1.2;margin:0;"></h1>
+          <div id="modal-meta" style="margin-top:var(--space-sm);font-size:var(--text-xs);color:var(--clr-text-dim);display:flex;gap:var(--space-md);flex-wrap:wrap;"></div>
+        </div>
+        <button class="post-modal-close" id="post-modal-close">✕</button>
+      </div>
+      <img id="modal-cover" class="post-modal-cover" src="" alt="" />
+      <div id="modal-tags" style="display:flex;flex-wrap:wrap;gap:var(--space-xs);margin-bottom:var(--space-xl);"></div>
+      <div class="post-content" id="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="justify-content:center;">
+        <p class="footer-copy">© 2024 Adarsh Dev. • GIET Bhubaneswar • Built with Flask &amp; ❤️</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- Scripts -->
+    <script src="/js/error_handler.js"></script>
+  <script src="/js/main.js?v=2"></script>
+  <script src="/js/api.js?v=2"></script>
+  <script src="/js/chatbot.js?v=2"></script>
+
+  <script>
+    // ── All Blog Posts ────────────────────────────
+    let allPosts = [];
+    let activeCategory = 'all';
+
+    async function loadBlogPosts() {
+      try {
+        const { posts } = await API.blog.list();
+        allPosts = posts || [];
+        renderFeaturedPost(allPosts);
+        renderPosts(allPosts);
+      } catch (err) {
+        document.getElementById('posts-container').innerHTML = `
+          <div style="text-align:center;padding:var(--space-3xl);color:var(--clr-text-muted);">
+            <div style="font-size:3rem;margin-bottom:var(--space-md);">📡</div>
+            <p>Could not load blog posts. Make sure the backend is running.</p>
+            <p style="font-size:var(--text-sm);margin-top:var(--space-sm);color:var(--clr-text-dim);">${err.message}</p>
+          </div>`;
+        document.getElementById('featured-section').style.display = 'none';
+      }
+    }
+
+    function renderFeaturedPost(posts) {
+      const featured = posts[0];
+      if (!featured) { document.getElementById('featured-section').style.display = 'none'; return; }
+
+      document.getElementById('featured-post-container').innerHTML = `
+        <div class="featured-post">
+          <div class="blog-cover-wrapper" style="height:100%;min-height:320px;">
+            <img class="featured-post-img" src="${featured.cover_image || 'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&q=80'}" alt="${featured.title}" />
+          </div>
+          <div class="featured-post-body">
+            <div class="featured-label">⭐ Featured Post</div>
+            <div style="font-size:var(--text-xs);color:var(--clr-purple);font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:var(--space-sm);">${featured.category}</div>
+            <h2 class="featured-post-title">${featured.title}</h2>
+            <p style="font-size:var(--text-sm);color:var(--clr-text-muted);margin-bottom:var(--space-lg);">${featured.excerpt || ''}</p>
+            <div style="display:flex;gap:var(--space-sm);margin-bottom:var(--space-lg);flex-wrap:wrap;">
+              ${(featured.tags || []).slice(0,3).map(t => `<span class="tech-tag">${t.trim()}</span>`).join('')}
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:var(--text-xs);color:var(--clr-text-dim);">⏱ ${featured.read_time} min read · 👁 ${featured.views} views</span>
+              <button class="blog-read-btn" onclick="openPost('${featured.slug}')">Read Article →</button>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    function renderPosts(posts) {
+      const container = document.getElementById('posts-container');
+      // Show all posts except index 0 (featured), filtered by category
+      const filtered = posts.slice(1).filter(p => activeCategory === 'all' || p.category === activeCategory);
+
+      if (!filtered.length) {
+        container.innerHTML = `
+          <div style="text-align:center;padding:var(--space-3xl);color:var(--clr-text-muted);">
+            <div style="font-size:3rem;margin-bottom:var(--space-md);">🔍</div>
+            <p>No posts in this category yet. Check back soon!</p>
+          </div>`;
+        return;
+      }
+
+      container.innerHTML = `<div class="blog-grid">${filtered.map(post => blogCard(post)).join('')}</div>`;
+
+      // Animate on scroll
+      document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        const obs = new IntersectionObserver(entries => {
+          entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
+        }, { threshold: 0.1 });
+        obs.observe(el);
+      });
+    }
+
+    function blogCard(post) {
+      const date = new Date(post.created_at).toLocaleDateString('en-IN', { year:'numeric', month:'short', day:'numeric' });
+      const tags = (post.tags || []).slice(0, 3).map(t => `<span class="tech-tag">${t.trim()}</span>`).join('');
+      return `
+        <div class="blog-card animate-on-scroll">
+          <div class="blog-cover-wrapper">
+            <img class="blog-cover" src="${post.cover_image || 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&q=80'}" alt="${post.title}" loading="lazy" />
+            <span class="blog-category-badge">${post.category}</span>
+          </div>
+          <div class="blog-body">
+            <div class="blog-meta">
+              <span>📅 ${date}</span>
+              <span>⏱ ${post.read_time} min read</span>
+            </div>
+            <h3 class="blog-title">${post.title}</h3>
+            <p class="blog-excerpt">${post.excerpt || ''}</p>
+            <div class="blog-tags">${tags}</div>
+            <div class="blog-footer">
+              <span class="blog-views">👁 ${post.views} views</span>
+              <button class="blog-read-btn" onclick="openPost('${post.slug}')">Read →</button>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    // ── Category Filter ──────────────────────────
+    document.getElementById('category-filter').addEventListener('click', (e) => {
+      const btn = e.target.closest('.filter-tab');
+      if (!btn) return;
+      document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeCategory = btn.dataset.cat;
+      renderPosts(allPosts);
+    });
+
+    // ── Post Reading Modal ───────────────────────
+    async function openPost(slug) {
+      const overlay = document.getElementById('post-modal-overlay');
+      try {
+        const { post } = await API.blog.get(slug);
+        document.getElementById('modal-title').textContent = post.title;
+        document.getElementById('modal-category').textContent = post.category;
+        document.getElementById('modal-cover').src = post.cover_image || '';
+        document.getElementById('modal-cover').style.display = post.cover_image ? '' : 'none';
+        const date = new Date(post.created_at).toLocaleDateString('en-IN', { year:'numeric', month:'long', day:'numeric' });
+        document.getElementById('modal-meta').innerHTML = `<span>📅 ${date}</span><span>⏱ ${post.read_time} min read</span><span>👁 ${post.views} views</span>`;
+        document.getElementById('modal-tags').innerHTML = (post.tags || []).map(t => `<span class="tech-tag">${t.trim()}</span>`).join('');
+        // Render markdown-like content
+        document.getElementById('modal-content').innerHTML = parseMarkdown(post.content || '');
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      } catch (err) {
+        console.error('Failed to load post:', err);
+      }
+    }
+
+    function parseMarkdown(text) {
+      return text
+        .replace(/```(\w*)\n([\s\S]*?)```/g, (_, lang, code) => `<pre><code>${escHtml(code.trim())}</code></pre>`)
+        .replace(/`([^`]+)`/g, '<code>$1</code>')
+        .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+        .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+        .replace(/^# (.+)$/gm, '<h2>$1</h2>')
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.+?)\*/g, '<em>$1</em>')
+        .replace(/\n\n/g, '</p><p>')
+        .replace(/^(?!<[h|p|p|u|o|l|c|b|s|d])/gm, '')
+        .replace(/(^|\n)([^<\n][^\n]*)/g, (m, nl, line) => line.startsWith('<') ? m : `${nl}<p>${line}</p>`);
+    }
+
+    function escHtml(text) {
+      return text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    document.getElementById('post-modal-close').addEventListener('click', () => {
+      document.getElementById('post-modal-overlay').classList.remove('open');
+      document.body.style.overflow = '';
+    });
+    document.getElementById('post-modal-overlay').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) {
+        e.currentTarget.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // ── Load on Init ──────────────────────────────
+    loadBlogPosts();
+
+    // Animate newsletter CTA
+    const obsOptions = { threshold: 0.1 };
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
+    }, obsOptions);
+    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

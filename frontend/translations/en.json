@@ -1,0 +1,108 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "skills": "Skills",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "hero": {
+    "badge": "Open to Internships & Collaborations",
+    "greeting": "Hi, I'm ",
+    "subtitle_prefix": "B.Tech CSE-AI Student · ",
+    "cta_projects": "View My Projects",
+    "cta_resume": "Download Resume",
+    "stat_projects": "Projects Built",
+    "stat_techs": "Technologies",
+    "stat_cgpa": "CGPA / 10",
+    "stat_year": "B.Tech Year"
+  },
+  "home": {
+    "featured_label": "Featured Work",
+    "featured_title": "My Best Projects",
+    "featured_desc": "AI-powered applications and full-stack systems I've built from scratch.",
+    "view_all": "View All Projects →",
+    "skills_title": "What I Work With",
+    "all_skills": "See All Skills →",
+    "about_label": "Who I Am",
+    "about_title": "Passionate AI & Full-Stack Developer",
+    "about_desc": "I'm Adarsh Sutar, a 2nd-year B.Tech CSE-AI student at GIET, Bhubaneswar. I build real-world AI solutions — from crop disease detection for farmers to NLP-powered resume analyzers.",
+    "learn_more": "Learn More About Me",
+    "contact_me": "Contact Me",
+    "card1_title": "AI / Machine Learning",
+    "card1_desc": "TensorFlow, Scikit-learn, OpenCV, NLP, Computer Vision",
+    "card2_title": "Full-Stack Development",
+    "card2_desc": "Python Flask, FastAPI, React, HTML/CSS/JS, REST APIs",
+    "card3_title": "Data & Databases",
+    "card3_desc": "MySQL, PostgreSQL, SQLite, MongoDB, SQLAlchemy",
+    "cta_title": "Let's Build Something Amazing Together! 🚀",
+    "cta_desc": "Looking for an internship, freelance project, or just want to collaborate? I'd love to hear from you.",
+    "cta_btn": "Get In Touch"
+  },
+  "about": {
+    "title": "About Me",
+    "tagline": "Building intelligent applications that solve real problems. From AI farming assistants to NLP-powered resume analyzers — I love turning complex ideas into tangible tech.",
+    "location_label": "📍 Location",
+    "degree_label": "🎓 Degree",
+    "cgpa_label": "📊 CGPA",
+    "status_label": "💼 Status",
+    "open_to": "Open to Internships",
+    "my_story": "My Story",
+    "bio_title": "Passionate about AI & Building Real Solutions",
+    "bio_p1": "I'm a 2nd-year B.Tech student specializing in Computer Science & Artificial Intelligence at Gandhi Institute of Excellent Technocrats (GIET), Bhubaneswar. My journey into tech started with curiosity about how machines can learn — and that curiosity has grown into a passion for building AI-powered systems.",
+    "bio_p2": "I've built projects across multiple domains: AI farming assistants, NLP resume analyzers, ML student performance models, and computer vision gesture recognition systems. Each project has taught me something new.",
+    "bio_p3": "When I'm not coding, I'm reading AI research papers, contributing to open source projects, or exploring new frameworks.",
+    "currently_learning": "🔬 Currently Exploring",
+    "value1_title": "Impact-First",
+    "value1_desc": "Every project I build serves real users with real needs.",
+    "value2_title": "Always Learning",
+    "value2_desc": "AI evolves fast. I stay curious and keep building.",
+    "experience_label": "Journey",
+    "experience_title": "Education & Experience",
+    "stat1": "Projects Completed",
+    "stat2": "AI/ML Technologies",
+    "stat3": "CGPA Score",
+    "stat4": "Lines of Code"
+  },
+  "projects": {
+    "label": "My Work",
+    "title": "Projects",
+    "subtitle": "AI-powered applications, full-stack systems, and everything in between.",
+    "search": "Search projects...",
+    "all": "All"
+  },
+  "skills": {
+    "label": "Technical Arsenal",
+    "title": "My Skills",
+    "subtitle": "Tools and technologies I use to build intelligent, full-stack applications.",
+    "tools_title": "Tools I Use Every Day"
+  },
+  "contact": {
+    "label": "Let's Talk",
+    "title": "Contact Me",
+    "subtitle": "Open to internships, collaboration, freelance work, or just a friendly conversation about AI.",
+    "form_title": "Send a Message 📬",
+    "form_desc": "Fill out the form below. I typically respond within 24 hours.",
+    "name": "Full Name",
+    "email": "Email Address",
+    "subject": "Subject",
+    "message": "Message",
+    "send": "Send Message 🚀",
+    "info_title": "Contact Information",
+    "location": "Location",
+    "response": "Response Time",
+    "response_time": "Within 24 hours",
+    "find_me": "Find Me Online",
+    "available": "Available Now",
+    "available_desc": "I'm actively looking for internship opportunities in AI/ML and Full-Stack Development. Let's build something great together!"
+  },
+  "blog": {
+    "back_home": "← Back to Home"
+  },
+  "footer": {
+    "navigate": "Navigate",
+    "connect": "Connect",
+    "resume": "Download Resume"
+  }
+}

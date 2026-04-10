@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skills — Adarsh Sutar Portfolio</title>
+  <meta name="description" content="Technical skills of Adarsh Sutar: Python, TensorFlow, Flask, React, OpenCV, SQL, and more." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script>window.API_BASE_URL = 'http://localhost:5000/api';</script>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="main-navbar">
+    <div class="nav-container">
+      <a href="/index.html" class="nav-logo">Adarsh Dev.</a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/index.html"    class="nav-link" data-i18n="nav.home">Home</a></li>
+        <li><a href="/about.html"    class="nav-link" data-i18n="nav.about">About</a></li>
+        <li><a href="/projects.html" class="nav-link" data-i18n="nav.projects">Projects</a></li>
+        <li><a href="/skills.html"   class="nav-link active" data-i18n="nav.skills">Skills</a></li>
+        <li><a href="/blog.html"     class="nav-link" data-i18n="nav.blog">Blog</a></li>
+        <li><a href="/contact.html"  class="nav-link" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="lang-toggle" id="lang-toggle-btn">हिं</button>
+        <button class="theme-toggle" id="theme-toggle-btn">☀️</button>
+        <button class="nav-hamburger" id="nav-hamburger"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-header-bg"></div>
+    <div class="container" style="position:relative;z-index:1;">
+      <p class="section-label" data-i18n="skills.label">Technical Arsenal</p>
+      <h1 data-i18n="skills.title">My Skills</h1>
+      <p style="max-width:600px;margin:var(--space-md) auto;font-size:var(--text-lg);" data-i18n="skills.subtitle">
+        Tools and technologies I use to build intelligent, full-stack applications.
+      </p>
+    </div>
+  </div>
+
+  <!-- SKILLS BY CATEGORY -->
+  <section class="section">
+    <div class="container">
+
+      <!-- Category tabs -->
+      <div class="filter-tabs" style="margin-bottom:var(--space-2xl);" id="skill-category-tabs">
+        <button class="filter-tab active" data-cat="">All</button>
+        <button class="filter-tab" data-cat="Languages">Languages</button>
+        <button class="filter-tab" data-cat="AI/ML">AI / ML</button>
+        <button class="filter-tab" data-cat="Frameworks">Frameworks</button>
+        <button class="filter-tab" data-cat="Databases">Databases</button>
+        <button class="filter-tab" data-cat="Tools">Tools</button>
+      </div>
+
+      <!-- Skills Grid -->
+      <div id="skills-grid" class="skill-categories">
+        <div class="loading-overlay" style="grid-column:1/-1;">
+          <div class="spinner"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TOOLS I USE DAILY -->
+  <section class="section" style="background:var(--clr-surface);">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <p class="section-label">Daily Setup</p>
+        <h2 data-i18n="skills.tools_title">Tools I Use Every Day</h2>
+      </div>
+      <div class="grid-4">
+        <div class="stat-card animate-on-scroll stagger-1">
+          <div style="font-size:2.5rem;margin-bottom:var(--space-sm);">🐍</div>
+          <h4>Python</h4>
+          <p style="font-size:var(--text-xs);">Primary language</p>
+        </div>
+        <div class="stat-card animate-on-scroll stagger-2">
+          <div style="font-size:2.5rem;margin-bottom:var(--space-sm);">💻</div>
+          <h4>VS Code</h4>
+          <p style="font-size:var(--text-xs);">Main editor</p>
+        </div>
+        <div class="stat-card animate-on-scroll stagger-3">
+          <div style="font-size:2.5rem;margin-bottom:var(--space-sm);">🐙</div>
+          <h4>Git / GitHub</h4>
+          <p style="font-size:var(--text-xs);">Version control</p>
+        </div>
+        <div class="stat-card animate-on-scroll stagger-4">
+          <div style="font-size:2.5rem;margin-bottom:var(--space-sm);">📓</div>
+          <h4>Jupyter</h4>
+          <p style="font-size:var(--text-xs);">ML experiments</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEARNING ROADMAP -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <p class="section-label">Growth</p>
+        <h2>Currently Exploring 🔬</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card animate-on-scroll stagger-1">
+          <div style="font-size:2rem;margin-bottom:var(--space-md);">🦜</div>
+          <h3 style="font-size:var(--text-xl);">LangChain & RAG</h3>
+          <p style="font-size:var(--text-sm);">Building Retrieval-Augmented Generation systems for smarter AI chatbots with memory.</p>
+          <div class="skill-bar-bg" style="margin-top:var(--space-md);">
+            <div class="skill-bar-fill" style="width:35%;"></div>
+          </div>
+          <p style="font-size:var(--text-xs);color:var(--clr-text-muted);margin-top:4px;">35% mastery</p>
+        </div>
+        <div class="card animate-on-scroll stagger-2">
+          <div style="font-size:2rem;margin-bottom:var(--space-md);">🐳</div>
+          <h3 style="font-size:var(--text-xl);">Docker & DevOps</h3>
+          <p style="font-size:var(--text-sm);">Containerizing Python/Flask apps for consistent, scalable deployment on cloud platforms.</p>
+          <div class="skill-bar-bg" style="margin-top:var(--space-md);">
+            <div class="skill-bar-fill" style="width:50%;"></div>
+          </div>
+          <p style="font-size:var(--text-xs);color:var(--clr-text-muted);margin-top:4px;">50% mastery</p>
+        </div>
+        <div class="card animate-on-scroll stagger-3">
+          <div style="font-size:2rem;margin-bottom:var(--space-md);">⚡</div>
+          <h3 style="font-size:var(--text-xl);">FastAPI Advanced</h3>
+          <p style="font-size:var(--text-sm);">Production-grade async APIs with background tasks, WebSockets, and OAuth2 authentication.</p>
+          <div class="skill-bar-bg" style="margin-top:var(--space-md);">
+            <div class="skill-bar-fill" style="width:65%;"></div>
+          </div>
+          <p style="font-size:var(--text-xs);color:var(--clr-text-muted);margin-top:4px;">65% mastery</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2025 Adarsh Sutar. Built with ❤️ &amp; Python.</p>
+        <a href="/index.html" class="footer-copy" style="color:var(--clr-purple);">← Back to Home</a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toast-container"></div>
+
+  <!-- SCRIPTS -->
+    <script src="/js/error_handler.js"></script>
+  <script src="/js/main.js?v=2"></script>
+  <script src="/js/api.js?v=2"></script>
+  <script src="/js/i18n.js?v=2"></script>
+  <script src="/js/analytics.js?v=2"></script>
+  <script src="/js/chatbot.js?v=2"></script>
+
+  <script>
+    const CATEGORY_ICONS = {
+      'Languages':  { icon: '💻', color: '#7c3aed' },
+      'AI/ML':      { icon: '🧠', color: '#06b6d4' },
+      'Frameworks': { icon: '⚙️', color: '#3b82f6' },
+      'Databases':  { icon: '💾', color: '#10b981' },
+      'Tools':      { icon: '🛠️', color: '#f59e0b' },
+    };
+
+    let allSkills = [];
+    let activeSkillCat = '';
+
+    async function loadSkills() {
+      const grid = document.getElementById('skills-grid');
+      try {
+        const { skills } = await API.skills.list();
+        allSkills = skills;
+        renderSkills(allSkills);
+      } catch (err) {
+        console.error('Failed to load skills:', err);
+        grid.innerHTML = `
+          <div style="grid-column:1/-1; text-align:center; padding: var(--space-2xl);">
+            <p style="color:var(--clr-text-muted);">⚠️ Could not load skills from backend. Please try again later.</p>
+          </div>`;
+      }
+    }
+
+    function renderSkills(skills) {
+      const grid = document.getElementById('skills-grid');
+
+      // Group by category
+      const cats = {};
+      skills.forEach(s => {
+        if (!cats[s.category]) cats[s.category] = [];
+        cats[s.category].push(s);
+      });
+
+      grid.innerHTML = Object.entries(cats).map(([cat, catSkills]) => {
+        const catInfo = CATEGORY_ICONS[cat] || { icon: '⭐', color: '#7c3aed' };
+        return `
+          <div class="skill-category-card animate-on-scroll">
+            <div class="skill-category-title">
+              <div class="category-icon">${catInfo.icon}</div>
+              ${cat}
+            </div>
+            ${catSkills.map(s => `
+              <div class="skill-card">
+                <div class="skill-icon">${s.icon}</div>
+                <div class="skill-info">
+                  <div class="skill-name">${s.name}</div>
+                  <div class="skill-bar-bg">
+                    <div class="skill-bar-fill" data-pct="${s.proficiency}" style="width:0%;"></div>
+                  </div>
+                </div>
+                <div class="skill-pct">${s.proficiency}%</div>
+              </div>
+            `).join('')}
+          </div>`;
+      }).join('');
+
+      ScrollAnimations.init();
+    }
+
+    // Category filter tabs
+    document.getElementById('skill-category-tabs').addEventListener('click', e => {
+      const btn = e.target.closest('.filter-tab');
+      if (!btn) return;
+      document.querySelectorAll('#skill-category-tabs .filter-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.dataset.cat;
+      const filtered = cat ? allSkills.filter(s => s.category === cat) : allSkills;
+      renderSkills(filtered);
+    });
+
+    loadSkills();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+{
+  "nav": {
+    "home": "होम",
+    "about": "परिचय",
+    "projects": "प्रोजेक्ट्स",
+    "skills": "कौशल",
+    "blog": "ब्लॉग",
+    "contact": "सम्पर्क"
+  },
+  "hero": {
+    "badge": "इंटर्नशिप और सहयोग के लिए उपलब्ध",
+    "greeting": "नमस्ते, मैं हूँ ",
+    "subtitle_prefix": "B.Tech CSE-AI छात्र · ",
+    "cta_projects": "मेरे प्रोजेक्ट्स देखें",
+    "cta_resume": "रेज़्यूमे डाउनलोड करें",
+    "stat_projects": "प्रोजेक्ट्स बनाए",
+    "stat_techs": "तकनीकें",
+    "stat_cgpa": "CGPA / 10",
+    "stat_year": "B.Tech वर्ष"
+  },
+  "home": {
+    "featured_label": "विशेष कार्य",
+    "featured_title": "मेरे बेहतरीन प्रोजेक्ट्स",
+    "featured_desc": "AI-आधारित एप्लिकेशन और फुल-स्टैक सिस्टम जो मैंने खुद बनाए हैं।",
+    "view_all": "सभी प्रोजेक्ट्स देखें →",
+    "skills_title": "मेरी तकनीकी दुनिया",
+    "all_skills": "सभी कौशल देखें →",
+    "about_label": "मैं कौन हूँ",
+    "about_title": "AI और फुल-स्टैक विकास में उत्साही",
+    "about_desc": "मैं आदर्श सुतार हूँ, GIET Bhubaneswar में B.Tech CSE-AI का 2रा साल का छात्र। मैं असली AI समाधान बनाता हूँ।",
+    "learn_more": "मेरे बारे में और जानें",
+    "contact_me": "सम्पर्क करें",
+    "card1_title": "AI / मशीन लर्निंग",
+    "card1_desc": "TensorFlow, Scikit-learn, OpenCV, NLP, कंप्यूटर विज़न",
+    "card2_title": "फुल-स्टैक विकास",
+    "card2_desc": "Python Flask, FastAPI, React, HTML/CSS/JS, REST APIs",
+    "card3_title": "डेटा और डेटाबेस",
+    "card3_desc": "MySQL, PostgreSQL, SQLite, MongoDB, SQLAlchemy",
+    "cta_title": "मिलकर कुछ शानदार बनाएं! 🚀",
+    "cta_desc": "इंटर्नशिप, फ्रीलांस प्रोजेक्ट, या सहयोग के लिए मुझसे मिलें।",
+    "cta_btn": "संपर्क करें"
+  },
+  "about": {
+    "title": "मेरे बारे में",
+    "tagline": "असली समस्याओं को सुलझाने वाले बुद्धिमान एप्लिकेशन बनाना। AI किसान सहायक से NLP रेज़्यूमे विश्लेषक तक — जटिल विचारों को तकनीक में बदलना मुझे पसंद है।",
+    "location_label": "📍 स्थान",
+    "degree_label": "🎓 डिग्री",
+    "cgpa_label": "📊 CGPA",
+    "status_label": "💼 स्थिति",
+    "open_to": "इंटर्नशिप के लिए उपलब्ध",
+    "my_story": "मेरी कहानी",
+    "bio_title": "AI और असली समाधान में उत्साही",
+    "bio_p1": "मैं Gandhi Institute of Excellent Technocrats (GIET), Bhubaneswar में Computer Science & Artificial Intelligence में B.Tech का 2रे साल का छात्र हूँ।",
+    "bio_p2": "मैंने कई क्षेत्रों में प्रोजेक्ट बनाए हैं: किसानों के लिए AI सहायक, NLP रेज़्यूमे विश्लेषक, ML छात्र प्रदर्शन मॉडल, और कंप्यूटर विज़न जेस्चर सिस्टम।",
+    "bio_p3": "जब मैं कोड नहीं कर रहा होता, तो AI शोध पत्र पढ़ता हूँ या नई frameworks खोजता हूँ।",
+    "currently_learning": "🔬 अभी सीख रहा हूँ",
+    "value1_title": "प्रभाव-प्रथम",
+    "value1_desc": "मेरा हर प्रोजेक्ट असली उपयोगकर्ताओं की जरूरतों को पूरा करता है।",
+    "value2_title": "सदा सीखते रहो",
+    "value2_desc": "AI तेजी से विकसित होता है। मैं जिज्ञासु रहता हूँ और बनाता रहता हूँ।",
+    "experience_label": "सफर",
+    "experience_title": "शिक्षा और अनुभव",
+    "stat1": "प्रोजेक्ट्स पूरे किए",
+    "stat2": "AI/ML तकनीकें",
+    "stat3": "CGPA स्कोर",
+    "stat4": "कोड की पंक्तियाँ"
+  },
+  "projects": {
+    "label": "मेरा काम",
+    "title": "प्रोजेक्ट्स",
+    "subtitle": "AI-आधारित एप्लिकेशन, फुल-स्टैक सिस्टम, और बहुत कुछ।",
+    "search": "प्रोजेक्ट खोजें...",
+    "all": "सभी"
+  },
+  "skills": {
+    "label": "तकनीकी शस्त्रागार",
+    "title": "मेरे कौशल",
+    "subtitle": "बुद्धिमान, फुल-स्टैक एप्लिकेशन बनाने के लिए उपयोग की जाने वाली तकनीकें।",
+    "tools_title": "रोज़ाना उपयोग के उपकरण"
+  },
+  "contact": {
+    "label": "बात करें",
+    "title": "संपर्क करें",
+    "subtitle": "इंटर्नशिप, सहयोग, फ्रीलांस काम, या AI के बारे में बातचीत के लिए उपलब्ध।",
+    "form_title": "संदेश भेजें 📬",
+    "form_desc": "नीचे फॉर्म भरें। मैं आमतौर पर 24 घंटे में जवाब देता हूँ।",
+    "name": "पूरा नाम",
+    "email": "ईमेल पता",
+    "subject": "विषय",
+    "message": "संदेश",
+    "send": "संदेश भेजें 🚀",
+    "info_title": "संपर्क जानकारी",
+    "location": "स्थान",
+    "response": "जवाब का समय",
+    "response_time": "24 घंटे के भीतर",
+    "find_me": "मुझे ऑनलाइन खोजें",
+    "available": "अभी उपलब्ध",
+    "available_desc": "मैं AI/ML और फुल-स्टैक डेवलपमेंट में इंटर्नशिप के अवसरों की तलाश में हूँ।"
+  },
+  "blog": {
+    "back_home": "← होम पर वापस जाएं"
+  },
+  "footer": {
+    "navigate": "नेविगेट करें",
+    "connect": "जुड़ें",
+    "resume": "रेज़्यूमे डाउनलोड करें"
+  }
+}

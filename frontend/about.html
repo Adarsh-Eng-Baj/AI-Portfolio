@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Adarsh Sutar — B.Tech CSE-AI Developer</title>
+  <meta name="description" content="Learn about Adarsh Sutar — a passionate B.Tech CSE-AI student at GIET Bhubaneswar building AI applications and full-stack systems." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script>window.API_BASE_URL = 'http://localhost:5000/api';</script>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="main-navbar">
+    <div class="nav-container">
+      <a href="/index.html" class="nav-logo">Adarsh Dev.</a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/index.html"    class="nav-link" data-i18n="nav.home">Home</a></li>
+        <li><a href="/about.html"    class="nav-link active" data-i18n="nav.about">About</a></li>
+        <li><a href="/projects.html" class="nav-link" data-i18n="nav.projects">Projects</a></li>
+        <li><a href="/skills.html"   class="nav-link" data-i18n="nav.skills">Skills</a></li>
+        <li><a href="/blog.html"     class="nav-link" data-i18n="nav.blog">Blog</a></li>
+        <li><a href="/contact.html"  class="nav-link" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="lang-toggle" id="lang-toggle-btn">हिं</button>
+        <button class="theme-toggle" id="theme-toggle-btn">☀️</button>
+        <button class="nav-hamburger" id="nav-hamburger"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-header-bg"></div>
+    <div class="container" style="position:relative;z-index:1;">
+      <p class="section-label">Who I Am</p>
+      <h1 data-i18n="about.title">About Me</h1>
+    </div>
+  </div>
+
+  <!-- ABOUT CONTENT -->
+  <section class="section">
+    <div class="container">
+      <div class="grid-2" style="align-items:start; gap:var(--space-3xl);">
+
+        <!-- Profile Card -->
+        <div class="animate-on-scroll">
+          <div class="card glass-card" style="text-align:center; padding: var(--space-2xl);">
+            <!-- Avatar -->
+            <div style="width:140px;height:140px;border-radius:50%;margin:0 auto var(--space-xl);background:var(--gradient);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-glow);overflow:hidden;padding:4px;">
+              <img src="/assets/images/profile.jpeg" alt="Adarsh Sutar" id="profile-photo" style="width:100%;height:100%;object-fit:cover;border-radius:50%;background-color:var(--clr-surface);display:block;" onerror="this.src='data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 100 100&quot;><text y=&quot;.9em&quot; font-size=&quot;90&quot;>🧑‍💻</text></svg>';"/>
+            </div>
+            <h2 style="margin-bottom:var(--space-sm);">Adarsh Sutar</h2>
+            <p style="color:var(--clr-purple);font-weight:600;margin-bottom:var(--space-md);">B.Tech CSE-AI • 2nd Year</p>
+            <p style="font-size:var(--text-sm);color:var(--clr-text-muted);" data-i18n="about.tagline">
+              Building intelligent applications that solve real problems. From AI farming assistants to NLP-powered resume analyzers — I love turning complex ideas into tangible tech.
+            </p>
+
+            <div style="display:flex;justify-content:center;gap:var(--space-md);margin-top:var(--space-xl);flex-wrap:wrap;">
+              <a href="https://github.com/adarshsutar" target="_blank" class="btn btn-outline btn-sm">🐙 GitHub</a>
+              <a href="https://linkedin.com/in/adarshsutar" target="_blank" class="btn btn-outline btn-sm">💼 LinkedIn</a>
+              <a href="#" id="about-resume-btn" class="btn btn-primary btn-sm">📄 Resume</a>
+            </div>
+
+            <!-- Quick Info -->
+            <div style="margin-top:var(--space-xl);text-align:left;display:flex;flex-direction:column;gap:var(--space-sm);">
+              <div style="display:flex;gap:var(--space-md);">
+                <span style="color:var(--clr-text-muted);min-width:100px;" data-i18n="about.location_label">📍 Location</span>
+                <span>Bhubaneswar, Odisha, India</span>
+              </div>
+              <div style="display:flex;gap:var(--space-md);">
+                <span style="color:var(--clr-text-muted);min-width:100px;" data-i18n="about.degree_label">🎓 Degree</span>
+                <span>B.Tech CSE (AI) — GIET Bhubaneswar</span>
+              </div>
+              <div style="display:flex;gap:var(--space-md);">
+                <span style="color:var(--clr-text-muted);min-width:100px;" data-i18n="about.cgpa_label">📊 SGPA</span>
+                <span>8.44 (Last Semester)</span>
+              </div>
+              <div style="display:flex;gap:var(--space-md);">
+                <span style="color:var(--clr-text-muted);min-width:100px;" data-i18n="about.status_label">💼 Status</span>
+                <span class="badge badge-green" data-i18n="about.open_to">Open to Internships</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bio & Values -->
+        <div class="animate-on-scroll stagger-2">
+          <p class="section-label" data-i18n="about.my_story">My Story</p>
+          <h2 data-i18n="about.bio_title">Passionate about AI &amp; Building Real Solutions</h2>
+          <p style="margin: var(--space-md) 0;" data-i18n="about.bio_p1">
+            I'm a 2nd-year B.Tech student specializing in Computer Science & Artificial Intelligence at Gandhi Institute of Excellent Technocrats (GIET), Bhubaneswar. My journey into tech started with curiosity about how machines can learn — and that curiosity has grown into a passion for building AI-powered systems.
+          </p>
+          <p style="margin-bottom: var(--space-md);" data-i18n="about.bio_p2">
+            I've built projects across multiple domains: AI farming assistants that help rural farmers detect crop diseases, NLP systems that analyze resumes, ML models that predict student performance, and computer vision systems for gesture recognition. Each project has taught me something new.
+          </p>
+          <p data-i18n="about.bio_p3">
+            When I'm not coding, I'm reading AI research papers, contributing to open source projects, or exploring new frameworks. I believe technology should solve real problems — especially for underserved communities.
+          </p>
+
+          <!-- What I'm learning -->
+          <div class="card" style="margin-top:var(--space-xl);">
+            <h4 style="margin-bottom:var(--space-md);" data-i18n="about.currently_learning">🔬 Currently Exploring</h4>
+            <div style="display:flex;flex-wrap:wrap;gap:var(--space-sm);">
+              <span class="tech-tag">LangChain &amp; RAG 🦜</span>
+              <span class="tech-tag">AWS Cloud ☁️</span>
+              <span class="tech-tag">Docker &amp; Kubernetes 🐳</span>
+              <span class="tech-tag">Transformer Models 🤖</span>
+              <span class="tech-tag">FastAPI Production 🚀</span>
+            </div>
+          </div>
+
+          <!-- Core values -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-md);margin-top:var(--space-xl);">
+            <div class="card" style="padding:var(--space-lg);">
+              <div style="font-size:1.75rem;margin-bottom:var(--space-sm);">🎯</div>
+              <h4 data-i18n="about.value1_title">Impact-First</h4>
+              <p style="font-size:var(--text-sm);" data-i18n="about.value1_desc">Every project I build serves real users with real needs.</p>
+            </div>
+            <div class="card" style="padding:var(--space-lg);">
+              <div style="font-size:1.75rem;margin-bottom:var(--space-sm);">🔄</div>
+              <h4 data-i18n="about.value2_title">Always Learning</h4>
+              <p style="font-size:var(--text-sm);" data-i18n="about.value2_desc">AI evolves fast. I stay curious and keep building.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE: Education & Experience -->
+  <section class="section" style="background: var(--clr-surface);">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <p class="section-label" data-i18n="about.experience_label">Journey</p>
+        <h2 data-i18n="about.experience_title">Education & Experience</h2>
+      </div>
+      <div class="timeline animate-on-scroll" id="experience-timeline">
+        <div class="loading-overlay">
+          <div class="spinner"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card animate-on-scroll stagger-1">
+          <div class="stat-number" data-count="6" data-suffix="+">0+</div>
+          <div class="stat-label" data-i18n="about.stat1">Projects Completed</div>
+        </div>
+        <div class="stat-card animate-on-scroll stagger-2">
+          <div class="stat-number" data-count="5" data-suffix="+">0+</div>
+          <div class="stat-label" data-i18n="about.stat2">AI/ML Technologies</div>
+        </div>
+        <div class="stat-card animate-on-scroll stagger-3">
+          <div class="stat-number" data-count="8" data-suffix=".2">0</div>
+          <div class="stat-label" data-i18n="about.stat3">CGPA Score</div>
+        </div>
+        <div class="stat-card animate-on-scroll stagger-4">
+          <div class="stat-number" data-count="1000" data-suffix="+">0+</div>
+          <div class="stat-label" data-i18n="about.stat4">Lines of Code</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2025 Adarsh Sutar. Built with ❤️ &amp; Python.</p>
+        <a href="/index.html" class="footer-copy" style="color:var(--clr-purple);">← Back to Home</a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toast-container"></div>
+
+  <!-- SCRIPTS -->
+    <script src="/js/error_handler.js"></script>
+  <script src="/js/main.js?v=2"></script>
+  <script src="/js/api.js?v=2"></script>
+  <script src="/js/i18n.js?v=2"></script>
+  <script src="/js/analytics.js?v=2"></script>
+  <script src="/js/chatbot.js?v=2"></script>
+
+  <script>
+    // Load resume download link
+    document.getElementById('about-resume-btn').href = API.resume.downloadUrl();
+
+    // Load experience timeline from API
+    async function loadExperience() {
+      const timeline = document.getElementById('experience-timeline');
+      try {
+        const { experience } = await API.experience.list();
+        
+        if (!experience || experience.length === 0) {
+          throw new Error('No experience found');
+        }
+
+        timeline.innerHTML = experience.map(e => `
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
+              <div>
+                <div class="timeline-date">${e.type.toUpperCase()} • ${e.start_date} – ${e.is_current ? 'Present' : e.end_date}</div>
+                <h3 class="timeline-title">${e.role}</h3>
+                <div class="timeline-company">🏛️ ${e.company} · ${e.location}</div>
+              </div>
+              ${e.is_current ? '<span class="badge badge-green">Current</span>' : '<span class="badge badge-blue">Completed</span>'}
+            </div>
+            <p class="timeline-desc">${e.description}</p>
+          </div>`
+        ).join('');
+
+      } catch (err) {
+        console.warn('API fetch failed, using fallback:', err);
+        // Fallback to static experience data
+        const experiences = [
+          { type: 'education', role: 'B.Tech CSE (Artificial Intelligence)', company: 'Gandhi Institute of Excellent Technocrats (GIET)', location: 'Ghangapatna, Bhubaneswar', start: 'Aug 2023', end: 'Present', desc: "2nd year student with SGPA 8.44. Core subjects: Machine Learning, Computer Vision, NLP, DBMS, Data Structures & Algorithms, Software Engineering.", current: true },
+          { type: 'work', role: 'Full-Stack & AI Developer', company: 'Self-Initiated Projects', location: 'Remote', start: 'Jan 2024', end: 'Present', desc: "Built 6+ end-to-end projects spanning AI/ML (TensorFlow, Scikit-learn, OpenCV) and full-stack web development (Flask, FastAPI, React, MySQL).", current: true },
+        ];
+
+        timeline.innerHTML = experiences.map(e => `
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
+              <div>
+                <div class="timeline-date">${e.type.toUpperCase()} • ${e.start} – ${e.current ? 'Present' : e.end}</div>
+                <h3 class="timeline-title">${e.role}</h3>
+                <div class="timeline-company">🏛️ ${e.company} · ${e.location}</div>
+              </div>
+              ${e.current ? '<span class="badge badge-green">Current</span>' : '<span class="badge badge-blue">Completed</span>'}
+            </div>
+            <p class="timeline-desc">${e.desc}</p>
+          </div>`
+        ).join('');
+      }
+    }
+
+    loadExperience();
+  </script>
+
+</body>
+</html>
