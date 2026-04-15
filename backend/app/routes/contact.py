@@ -73,7 +73,9 @@ def submit_contact():
                     message=msg_text
                 )
             except Exception as e:
+                import traceback
                 print(f"[CONTACT] Async email notification failed: {e}")
+                traceback.print_exc()
 
     Thread(target=send_emails_async, args=(
         app, msg.name, msg.email, msg.subject, msg.message

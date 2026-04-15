@@ -24,7 +24,9 @@ def send_contact_confirmation(recipient_name: str, recipient_email: str, subject
         mail.send(msg)
         return True
     except Exception as e:
+        import traceback
         print(f"[EMAIL] Failed to send confirmation to {recipient_email}: {e}")
+        traceback.print_exc()
         return False
 
 
@@ -42,7 +44,9 @@ def send_new_contact_notification(sender_name: str, sender_email: str, subject: 
         mail.send(msg)
         return True
     except Exception as e:
+        import traceback
         print(f"[EMAIL] Failed to notify Adarsh: {e}")
+        traceback.print_exc()
         return False
 
 
