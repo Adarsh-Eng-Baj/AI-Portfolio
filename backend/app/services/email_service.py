@@ -4,6 +4,7 @@ Sends automated confirmation emails to users who contact Adarsh.
 """
 
 import os
+import requests
 from flask_mail import Mail, Message
 
 mail = Mail()
@@ -11,41 +12,83 @@ mail = Mail()
 
 def send_contact_confirmation(recipient_name: str, recipient_email: str, subject: str, message_preview: str) -> bool:
     """
-    Send an automated confirmation email to the user who contacted Adarsh.
-    Returns True if sent successfully, False otherwise.
+    Send an automated confirmation email using Resend API.
     """
+    api_key = os.environ.get('RESEND_API_KEY')
+    if not api_key:
+        print("[EMAIL] Error: RESEND_API_KEY not found in environment.")
+        return False
+
+    # Note: If domain is not verified, "from" must be "onboarding@resend.dev"
+    # and "to" can only be the account owner.
+    # To send to any recipient, you must verify your domain in Resend dashboard.
     try:
-        msg = Message(
-            subject=f"Thanks for reaching out, {recipient_name.split()[0]}! — Adarsh Sutar",
-            recipients=[recipient_email],
-            sender=("Adarsh Sutar | Portfolio", os.environ.get('MAIL_DEFAULT_SENDER', 'adarshasutar24@gmail.com')),
-            html=_build_confirmation_html(recipient_name, subject, message_preview),
-        )
-        mail.send(msg)
-        return True
+        url = "https://api.resend.com/emails"
+        headers = {
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json"
+        }
+        
+        data = {
+            "from": "Adarsh Portfolio <onboarding@resend.dev>",
+            "to": [recipient_email],
+            "subject": f"Thanks for reaching out, {recipient_name.split()[0]}! — Adarsh Sutar",
+            "html": _build_confirmation_html(recipient_name, subject, message_preview)
+        }
+        
+        response = requests.post(url, headers=headers, json=data)
+        
+        if response.status_code in [200, 201]:
+            print(f"[EMAIL] Success: Confirmation sent to {recipient_email}")
+            return True
+        else:
+            print(f"[EMAIL] Resend Error: {response.text}")
+            return False
+            
     except Exception as e:
         import traceback
-        print(f"[EMAIL] Failed to send confirmation to {recipient_email}: {e}")
+        print(f"[EMAIL] Exception in send_contact_confirmation: {e}")
         traceback.print_exc()
         return False
 
 
 def send_new_contact_notification(sender_name: str, sender_email: str, subject: str, message: str) -> bool:
     """
-    Notify Adarsh about a new contact form submission (sent to his own email).
+    Notify Adarsh about a new contact form submission using Resend API.
     """
+    api_key = os.environ.get('RESEND_API_KEY')
+    my_email = os.environ.get('MAIL_USERNAME', 'adarshasutar24@gmail.com')
+    
+    if not api_key:
+        print("[EMAIL] Error: RESEND_API_KEY not found in environment.")
+        return False
+
     try:
-        msg = Message(
-            subject=f"[Portfolio Contact] New message from {sender_name}",
-            recipients=[os.environ.get('MAIL_USERNAME', 'adarshasutar24@gmail.com')],
-            sender=("Portfolio Bot", os.environ.get('MAIL_DEFAULT_SENDER', 'adarshasutar24@gmail.com')),
-            html=_build_notification_html(sender_name, sender_email, subject, message),
-        )
-        mail.send(msg)
-        return True
+        url = "https://api.resend.com/emails"
+        headers = {
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json"
+        }
+        
+        data = {
+            "from": "Portfolio Bot <onboarding@resend.dev>",
+            "to": [my_email],
+            "subject": f"[Portfolio Contact] New message from {sender_name}",
+            "html": _build_notification_html(sender_name, sender_email, subject, message)
+        }
+        
+        response = requests.post(url, headers=headers, json=data)
+        
+        if response.status_code in [200, 201]:
+            print(f"[EMAIL] Success: Adarsh notified of new message from {sender_email}")
+            return True
+        else:
+            print(f"[EMAIL] Resend Error (Notification): {response.text}")
+            return False
+            
     except Exception as e:
         import traceback
-        print(f"[EMAIL] Failed to notify Adarsh: {e}")
+        print(f"[EMAIL] Exception in send_new_contact_notification: {e}")
         traceback.print_exc()
         return False
 
