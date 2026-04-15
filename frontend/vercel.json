@@ -1,7 +1,4 @@
 {
-  "version": 2,
-  "name": "adarsh-sutar-portfolio",
-  "public": "./frontend",
   "routes": [
     { "src": "/(.*)\\.html", "dest": "/$1.html" },
     { "src": "/admin/(.*)", "dest": "/admin/$1" },
