@@ -121,3 +121,37 @@ def change_password():
     db.session.commit()
     
     return jsonify({'message': 'Password changed successfully'}), 200
+
+# ─────────────────────────────────────────────
+# POST /api/auth/reset-password
+# ─────────────────────────────────────────────
+@auth_bp.route('/reset-password', methods=['POST'])
+def reset_password():
+    """Reset the admin password using a hardcoded recovery PIN."""
+    data = request.get_json()
+    
+    if not data:
+        return jsonify({'error': 'Request body must be JSON'}), 400
+        
+    email = data.get('email', '').strip().lower()
+    recovery_pin = data.get('recovery_pin', '').strip()
+    new_password = data.get('new_password', '')
+    
+    if not email or not recovery_pin or not new_password:
+        return jsonify({'error': 'Email, PIN, and new password are required'}), 400
+        
+    if recovery_pin != "706484":
+        return jsonify({'error': 'Invalid recovery PIN'}), 401
+        
+    if len(new_password) < 6:
+        return jsonify({'error': 'New password must be at least 6 characters'}), 400
+        
+    user = User.query.filter_by(email=email, is_active=True).first()
+    if not user:
+        return jsonify({'error': 'Admin account not found for this email'}), 404
+        
+    new_hash = bcrypt.hashpw(new_password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+    user.password_hash = new_hash
+    db.session.commit()
+    
+    return jsonify({'message': 'Password successfully reset'}), 200

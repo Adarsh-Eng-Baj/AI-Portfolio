@@ -36,7 +36,7 @@ class Config:
     OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY', '')
     
     # Admin seeding
-    ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL', 'admin@portfolio.com')
+    ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL', 'adarshasutar24@gmail.com')
     ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'Admin@123')
     ADMIN_NAME = os.environ.get('ADMIN_NAME', 'Adarsh Sutar')
 

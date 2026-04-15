@@ -76,6 +76,9 @@ const API = {
 
     changePassword: (current_password, new_password) =>
       apiFetch('/auth/change-password', { method: 'POST', body: JSON.stringify({ current_password, new_password }) }),
+
+    resetPassword: (email, recovery_pin, new_password) =>
+      apiFetch('/auth/reset-password', { method: 'POST', body: JSON.stringify({ email, recovery_pin, new_password }) }),
   },
 
   // ── Projects ──────────────────────────────────────
