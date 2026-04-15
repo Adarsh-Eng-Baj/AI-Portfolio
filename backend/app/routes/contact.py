@@ -50,23 +50,34 @@ def submit_contact():
     db.session.add(msg)
     db.session.commit()
 
-    # Send automated emails (best-effort — don't fail the request if email fails)
-    try:
-        from app.services.email_service import send_contact_confirmation, send_new_contact_notification
-        send_contact_confirmation(
-            recipient_name=msg.name,
-            recipient_email=msg.email,
-            subject=msg.subject,
-            message_preview=msg.message
-        )
-        send_new_contact_notification(
-            sender_name=msg.name,
-            sender_email=msg.email,
-            subject=msg.subject,
-            message=msg.message
-        )
-    except Exception as e:
-        print(f"[CONTACT] Email notification failed: {e}")
+    # Send automated emails in a background thread
+    from threading import Thread
+    from flask import current_app
+    
+    app = current_app._get_current_object()
+    
+    def send_emails_async(app_obj, name, email_addr, sub, msg_text):
+        with app_obj.app_context():
+            try:
+                from app.services.email_service import send_contact_confirmation, send_new_contact_notification
+                send_contact_confirmation(
+                    recipient_name=name,
+                    recipient_email=email_addr,
+                    subject=sub,
+                    message_preview=msg_text
+                )
+                send_new_contact_notification(
+                    sender_name=name,
+                    sender_email=email_addr,
+                    subject=sub,
+                    message=msg_text
+                )
+            except Exception as e:
+                print(f"[CONTACT] Async email notification failed: {e}")
+
+    Thread(target=send_emails_async, args=(
+        app, msg.name, msg.email, msg.subject, msg.message
+    )).start()
     
     return jsonify({
         'message': "Message sent successfully! I'll get back to you soon.",

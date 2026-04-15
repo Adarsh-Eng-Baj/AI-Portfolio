@@ -42,6 +42,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
     setTimeout(() => window.location.href = '/admin/login.html', 1500);
   });
+
+  // Change Password Form
+  document.getElementById('change-pwd-form')?.addEventListener('submit', handlePasswordChange);
 });
 
 // ─────────────────────────────────────────────
@@ -592,5 +595,52 @@ async function deleteBlogPost(id, title) {
     await loadBlogPosts();
   } catch (err) {
     Toast.error('Delete Failed', err.message);
+  }
+}
+
+// ─────────────────────────────────────────────
+// SETTINGS — Change Password
+// ─────────────────────────────────────────────
+async function handlePasswordChange(e) {
+  e.preventDefault();
+
+  const currentPass = document.getElementById('current-password').value;
+  const newPass     = document.getElementById('new-password').value;
+  const confirmPass = document.getElementById('confirm-password').value;
+
+  if (newPass !== confirmPass) {
+    Toast.error('Validation Error', 'New passwords do not match.');
+    return;
+  }
+
+  const btn = document.getElementById('change-pwd-btn');
+  const text = document.getElementById('change-pwd-text');
+  const spinner = document.getElementById('change-pwd-spinner');
+
+  btn.disabled = true;
+  text.style.display = 'none';
+  spinner.style.display = 'block';
+
+  try {
+    const res = await API.auth.changePassword(currentPass, newPass);
+    
+    SuccessAnim.show({
+      title: 'Password Changed! 🔐',
+      subtitle: res.message || 'Identity verified and security updated.',
+      badge: 'High Security',
+      autoClose: 2000
+    });
+
+    // Logout after 2 seconds
+    setTimeout(() => {
+      Auth.removeToken();
+      window.location.href = '/admin/login.html';
+    }, 2000);
+
+  } catch (err) {
+    Toast.error('Change Failed', err.message || 'Check your current password.');
+    btn.disabled = false;
+    text.style.display = 'block';
+    spinner.style.display = 'none';
   }
 }

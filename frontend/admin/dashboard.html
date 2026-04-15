@@ -37,6 +37,9 @@
         <a href="#" class="dash-nav-link" data-section="blog" onclick="switchSection('blog',this)">
           <span class="dash-nav-icon">📝</span> Blog Posts
         </a>
+        <a href="#" class="dash-nav-link" data-section="settings" onclick="switchSection('settings',this)">
+          <span class="dash-nav-icon">⚙️</span> Settings
+        </a>
       </nav>
     </div>
 
@@ -227,6 +230,50 @@
             </td></tr>
           </tbody>
         </table>
+      </div>
+    </div>
+
+    <!-- ──────────────────────────────────────────── -->
+    <!-- SECTION: Settings -->
+    <!-- ──────────────────────────────────────────── -->
+    <div id="section-settings" style="display:none;">
+      <div class="dash-topbar">
+        <h1 class="dash-title">Settings</h1>
+      </div>
+
+      <div class="grid-2" style="gap:var(--space-xl); align-items:start;">
+        <!-- Change Password Card -->
+        <div class="card" style="padding:var(--space-2xl);">
+          <h3 style="margin-bottom:var(--space-md);">Change Admin Password 🔐</h3>
+          <p style="color:var(--clr-text-muted);font-size:var(--text-sm);margin-bottom:var(--space-xl);">
+            Update your account password. You will be logged out after a successful change.
+          </p>
+
+          <form id="change-pwd-form">
+            <div class="form-group">
+              <label class="form-label">Current Password</label>
+              <input type="password" id="current-password" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">New Password</label>
+              <input type="password" id="new-password" class="form-input" required minlength="6" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Confirm New Password</label>
+              <input type="password" id="confirm-password" class="form-input" required />
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;" id="change-pwd-btn">
+              <span id="change-pwd-text">Update Password</span>
+              <span id="change-pwd-spinner" style="display:none;"><div class="spinner" style="width:20px;height:20px;border-width:2px;margin:0;"></div></span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Future Settings Placeholder -->
+        <div class="card" style="padding:var(--space-2xl); border-style:dashed; opacity:0.7;">
+          <h3 style="margin-bottom:var(--space-md);">Site Configuration</h3>
+          <p style="font-size:var(--text-sm);color:var(--clr-text-muted);">More administrative settings coming soon.</p>
+        </div>
       </div>
     </div>
 

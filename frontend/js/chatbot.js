@@ -164,7 +164,7 @@ const Chatbot = (() => {
     el.id = id;
     el.className = 'typing-indicator';
     el.innerHTML = `
-      <div class="typing-text">Adarsh Typping</div>
+      <div class="typing-text">Adarsh Typing</div>
       <div class="typing-dots">
         <div class="typing-dot"></div>
         <div class="typing-dot"></div>
