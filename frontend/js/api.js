@@ -157,6 +157,13 @@ const API = {
     delete: (id) => apiFetch(`/blog/${id}`, { method: 'DELETE' }),
   },
 
+  // ── Settings ──────────────────────────────────────
+  settings: {
+    getPublic: () => apiFetch('/settings/public'),
+    list: () => apiFetch('/settings'),
+    update: (key, value) => apiFetch(`/settings/${key}`, { method: 'PUT', body: JSON.stringify({ value }) }),
+  },
+
 };
 
 // Export for use in other scripts

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under Construction — Adarsh Sutar Portfolio</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/i18n.js"></script>
+    <style>
+        :root {
+            --game-bg: #1a1a2e;
+            --dino-color: #00d2ff;
+            --obstacle-color: #ff0055;
+            --ground-color: #4e4e6a;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at center, #16213e 0%, #0f3460 100%);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
+
+        .maint-container {
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #00d2ff 0%, #3a7bd5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #a0a0c0;
+            margin-bottom: 2rem;
+        }
+
+        .game-wrapper {
+            position: relative;
+            background: var(--game-bg);
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 20px rgba(0, 210, 255, 0.2);
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        canvas {
+            display: block;
+            background-color: #16213e;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .game-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .game-overlay h2 {
+            font-size: 2rem;
+            margin: 0;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .game-overlay p {
+            margin-top: 0.5rem;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .btn-restart {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: var(--dino-color);
+            border: none;
+            border-radius: 8px;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            pointer-events: auto;
+            transition: transform 0.2s;
+        }
+
+        .btn-restart:hover {
+            transform: scale(1.05);
+        }
+
+        .controls-hint {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: #6a6a8a;
+        }
+
+        kbd {
+            background: #333;
+            border-radius: 4px;
+            padding: 2px 6px;
+            color: #fff;
+            border: 1px solid #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="maint-container">
+        <h1 data-i18n="maintenance.title">Under Construction</h1>
+        <p data-i18n="maintenance.desc">Our website is currently undergoing some major upgrades & development. Enjoy a quick game while you wait!</p>
+
+        <div class="game-wrapper" id="game-wrapper">
+            <canvas id="gameCanvas" width="600" height="200"></canvas>
+            <div id="game-ui" class="game-overlay">
+                <h2 id="game-msg" data-i18n="maintenance.game_start">Press Space to Start</h2>
+                <p id="game-submsg" data-i18n="maintenance.game_sub">Dino Adventure</p>
+                <button id="restart-btn" class="btn-restart" style="display:none;" data-i18n="maintenance.play_again">Play Again</button>
+            </div>
+        </div>
+
+        <div class="controls-hint">
+            <span data-i18n="maintenance.controls" data-i18n-vars='{"space":"<kbd>Space</kbd>", "up":"<kbd>↑</kbd>"}'>Use <kbd>Space</kbd> or <kbd>↑</kbd> to jump.</span> 
+            <span data-i18n="maintenance.high_score">High Score</span>: <span id="high-score">0</span>
+        </div>
+        
+        <div style="margin-top: 2rem; display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+            <button class="lang-toggle" id="lang-toggle-btn" style="background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; cursor: pointer;">हिं</button>
+            <a href="/admin/login.html" style="color: rgba(255,255,255,0.3); text-decoration: none; font-size: 0.8rem;" data-i18n="maintenance.admin_login">Admin Login</a>
+        </div>
+    </div>
+
+    <script src="/js/dino-game.js"></script>
+    <script>
+        // Init i18n
+        document.addEventListener('DOMContentLoaded', () => {
+            const langBtn = document.getElementById('lang-toggle-btn');
+            if (langBtn) {
+                langBtn.addEventListener('click', () => {
+                    const nextLang = i18n.getLanguage() === 'en' ? 'hi' : 'en';
+                    i18n.setLanguage(nextLang);
+                    langBtn.textContent = nextLang === 'en' ? 'हिं' : 'EN';
+                });
+                langBtn.textContent = i18n.getLanguage() === 'en' ? 'हिं' : 'EN';
+            }
+        });
+    </script>
+</body>
+</html>

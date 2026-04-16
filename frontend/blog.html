@@ -5,8 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blog — Adarsh Dev. | AI, Cloud & Web Dev Insights</title>
   <meta name="description" content="Tech articles by Adarsh Sutar on AI/ML, AWS Cloud Computing, Flask/Python backend development, and full-stack engineering." />
+  <script src="/js/maintenance-check.js"></script>
   <link rel="stylesheet" href="/css/style.css" />
-  <script>window.API_BASE_URL = 'https://ai-portfolio-ynsq.onrender.com/api';</script>
+  <script>
+    window.API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+      ? 'http://localhost:5000/api' 
+      : 'https://ai-portfolio-ynsq.onrender.com/api';
+  </script>
   <style>
     /* ── Blog-specific styles ── */
     .blog-grid {

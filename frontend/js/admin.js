@@ -85,6 +85,7 @@ function switchSection(section, linkEl) {
   if (section === 'messages')  loadMessages();
   if (section === 'analytics') loadPageAnalytics();
   if (section === 'blog')      loadBlogPosts();
+  if (section === 'settings')  loadSettings();
 }
 
 // ─────────────────────────────────────────────
@@ -641,6 +642,37 @@ async function handlePasswordChange(e) {
     Toast.error('Change Failed', err.message || 'Check your current password.');
     btn.disabled = false;
     text.style.display = 'block';
-    spinner.style.display = 'none';
+  }
+}
+
+// ─────────────────────────────────────────────
+// SITE SETTINGS
+// ─────────────────────────────────────────────
+async function loadSettings() {
+  const toggle = document.getElementById('maint-mode-toggle');
+  if (!toggle) return;
+
+  try {
+    const settings = await API.settings.list();
+    const maintSetting = settings.find(s => s.key === 'maintenance_mode');
+    
+    if (maintSetting) {
+      toggle.checked = maintSetting.value === 'true';
+    }
+
+    // Remove existing listener to avoid duplicates
+    toggle.onchange = null; 
+    toggle.onchange = async () => {
+      try {
+        await API.settings.update('maintenance_mode', toggle.checked);
+        Toast.success('Setting Updated', `Maintenance mode is now ${toggle.checked ? 'ENABLED' : 'DISABLED'}.`);
+      } catch (err) {
+        Toast.error('Update Failed', err.message);
+        toggle.checked = !toggle.checked; // revert on failure
+      }
+    };
+
+  } catch (err) {
+    Toast.error('Settings Error', 'Failed to load site configurations.');
   }
 }

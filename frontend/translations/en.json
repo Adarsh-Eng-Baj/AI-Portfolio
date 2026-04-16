@@ -104,5 +104,18 @@
     "navigate": "Navigate",
     "connect": "Connect",
     "resume": "Download Resume"
+  },
+  "maintenance": {
+    "title": "Under Construction",
+    "desc": "Our website is currently undergoing some major upgrades & development. Enjoy a quick game while you wait!",
+    "game_start": "Press Space to Start",
+    "game_sub": "Dino Adventure",
+    "game_over": "Game Over!",
+    "final_score": "Final Score",
+    "new_high_score": "NEW HIGH SCORE!",
+    "play_again": "Play Again",
+    "controls": "Use {space} or {up} to jump.",
+    "high_score": "High Score",
+    "admin_login": "Admin Login"
   }
 }

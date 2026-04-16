@@ -68,6 +68,7 @@ def create_app(config_name=None):
     from app.routes.experience import experience_bp
 
     from app.routes.blog import blog_bp
+    from app.routes.settings import settings_bp
 
     app.register_blueprint(auth_bp,      url_prefix='/api/auth')
     app.register_blueprint(projects_bp,  url_prefix='/api/projects')
@@ -78,6 +79,7 @@ def create_app(config_name=None):
     app.register_blueprint(skills_bp,    url_prefix='/api/skills')
     app.register_blueprint(experience_bp, url_prefix='/api/experience')
     app.register_blueprint(blog_bp,      url_prefix='/api/blog')
+    app.register_blueprint(settings_bp,  url_prefix='/api/settings')
     
     # ── Root API Info Route ─────────────────────
     @app.route('/api')
@@ -139,7 +141,7 @@ def create_app(config_name=None):
 
 def _seed_database():
     """Seed the database with initial data on first run."""
-    from app.models import User, Project, Skill, Experience, BlogPost
+    from app.models import User, Project, Skill, Experience, BlogPost, Setting
     import bcrypt
     from flask import current_app
     
@@ -360,5 +362,19 @@ def _seed_database():
         for post in posts:
             db.session.add(post)
         print("[OK] Blog posts seeded")
+    
+    # Seed site settings
+    if Setting.query.count() == 0:
+        settings = [
+            Setting(
+                key='maintenance_mode',
+                value='false',
+                description='Enable or disable site-wide maintenance mode.'
+            ),
+            # Add other settings here if needed
+        ]
+        for s in settings:
+            db.session.add(s)
+        print("[OK] Site settings seeded")
     
     db.session.commit()

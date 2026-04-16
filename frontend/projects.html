@@ -6,8 +6,13 @@
   <title>Projects — Adarsh Sutar Portfolio</title>
   <meta name="description" content="Explore AI/ML and full-stack projects built by Adarsh Sutar — from NLP resume analyzers to AI farming assistants." />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>" />
+  <script src="/js/maintenance-check.js"></script>
   <link rel="stylesheet" href="/css/style.css" />
-  <script>window.API_BASE_URL = 'https://ai-portfolio-ynsq.onrender.com/api';</script>
+  <script>
+    window.API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+      ? 'http://localhost:5000/api' 
+      : 'https://ai-portfolio-ynsq.onrender.com/api';
+  </script>
 </head>
 <body>
 

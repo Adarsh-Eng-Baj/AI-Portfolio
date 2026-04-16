@@ -9,7 +9,11 @@
   <link rel="stylesheet" href="/css/style.css" />
   <!-- Chart.js for analytics graphs -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-  <script>window.API_BASE_URL = 'https://ai-portfolio-ynsq.onrender.com/api';</script>
+  <script>
+    window.API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+      ? 'http://localhost:5000/api' 
+      : 'https://ai-portfolio-ynsq.onrender.com/api';
+  </script>
 </head>
 <body>
 
@@ -269,10 +273,27 @@
           </form>
         </div>
 
-        <!-- Future Settings Placeholder -->
-        <div class="card" style="padding:var(--space-2xl); border-style:dashed; opacity:0.7;">
-          <h3 style="margin-bottom:var(--space-md);">Site Configuration</h3>
-          <p style="font-size:var(--text-sm);color:var(--clr-text-muted);">More administrative settings coming soon.</p>
+        <!-- Site Configuration Card -->
+        <div class="card" style="padding:var(--space-2xl);">
+          <h3 style="margin-bottom:var(--space-md);">Site Configuration ⚙️</h3>
+          <p style="font-size:var(--text-sm);color:var(--clr-text-muted);margin-bottom:var(--space-xl);">
+            Manage global site behavior and accessibility.
+          </p>
+
+          <div class="setting-item" style="display:flex;justify-content:space-between;align-items:center;padding:var(--space-md) 0;border-bottom:1px solid var(--clr-border);">
+            <div>
+              <div style="font-weight:600;margin-bottom:4px;">Maintenance Mode</div>
+              <div style="font-size:var(--text-xs);color:var(--clr-text-muted);">When enabled, visitors see the "Under Construction" page.</div>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="maint-mode-toggle">
+              <span class="slider round"></span>
+            </label>
+          </div>
+          
+          <div style="margin-top:var(--space-xl); font-size:var(--text-xs); color:var(--clr-text-muted);">
+            <p>Admin accounts can still bypass maintenance mode while logged in.</p>
+          </div>
         </div>
       </div>
     </div>
