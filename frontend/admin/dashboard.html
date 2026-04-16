@@ -6,11 +6,13 @@
   <title>Admin Dashboard — Adarsh Sutar Portfolio</title>
   <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>" />
-  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="../css/style.css" />
   <!-- Chart.js for analytics graphs -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <script>
-    window.API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+    window.API_BASE_URL = window.location.hostname === 'localhost' || 
+                         window.location.hostname === '127.0.0.1' || 
+                         window.location.protocol === 'file:'
       ? 'http://localhost:5000/api' 
       : 'https://ai-portfolio-ynsq.onrender.com/api';
   </script>
@@ -53,7 +55,7 @@
         <div>Administrator</div>
       </div>
       <div style="display:flex;gap:var(--space-sm);">
-        <a href="/index.html" class="btn btn-ghost btn-sm" style="flex:1;font-size:var(--text-xs);">View Site</a>
+        <a href="../index.html" class="btn btn-ghost btn-sm" style="flex:1;font-size:var(--text-xs);">View Site</a>
         <button class="btn btn-outline btn-sm" id="logout-btn" style="font-size:var(--text-xs);">Logout</button>
       </div>
     </div>
@@ -451,10 +453,10 @@
 <div id="toast-container"></div>
 
 <!-- SCRIPTS -->
-  <script src="/js/error_handler.js"></script>
-  <script src="/js/main.js?v=2"></script>
-<script src="/js/api.js?v=2"></script>
-<script src="/js/admin.js?v=2"></script>
+  <script src="../js/error_handler.js"></script>
+  <script src="../js/main.js?v=2"></script>
+<script src="../js/api.js?v=2"></script>
+<script src="../js/admin.js?v=2"></script>
 
 </body>
 </html>

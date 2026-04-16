@@ -5,10 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blog — Adarsh Dev. | AI, Cloud & Web Dev Insights</title>
   <meta name="description" content="Tech articles by Adarsh Sutar on AI/ML, AWS Cloud Computing, Flask/Python backend development, and full-stack engineering." />
-  <script src="/js/maintenance-check.js"></script>
-  <link rel="stylesheet" href="/css/style.css" />
+  <script src="./js/maintenance-check.js"></script>
+  <link rel="stylesheet" href="./css/style.css" />
   <script>
-    window.API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+    window.API_BASE_URL = window.location.hostname === 'localhost' || 
+                         window.location.hostname === '127.0.0.1' || 
+                         window.location.protocol === 'file:'
       ? 'http://localhost:5000/api' 
       : 'https://ai-portfolio-ynsq.onrender.com/api';
   </script>
@@ -418,10 +420,10 @@
   <div id="toast-container"></div>
 
   <!-- Scripts -->
-    <script src="/js/error_handler.js"></script>
-  <script src="/js/main.js?v=2"></script>
-  <script src="/js/api.js?v=2"></script>
-  <script src="/js/chatbot.js?v=2"></script>
+    <script src="./js/error_handler.js"></script>
+  <script src="./js/main.js?v=2"></script>
+  <script src="./js/api.js?v=2"></script>
+  <script src="./js/chatbot.js?v=2"></script>
 
   <script>
     // ── All Blog Posts ────────────────────────────

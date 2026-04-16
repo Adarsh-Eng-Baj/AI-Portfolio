@@ -43,7 +43,8 @@
                 }
                 
                 // Not an admin or not logged in, redirect to maintenance page
-                window.location.href = '/maintenance.html';
+                const isSubdir = window.location.pathname.includes('/admin/');
+                window.location.href = isSubdir ? '../maintenance.html' : 'maintenance.html';
             }
         }
     } catch (error) {

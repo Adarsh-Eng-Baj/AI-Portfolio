@@ -6,9 +6,11 @@
   <title>Admin Login — Adarsh Sutar Portfolio</title>
   <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>" />
-  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="../css/style.css" />
   <script>
-    window.API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+    window.API_BASE_URL = window.location.hostname === 'localhost' || 
+                         window.location.hostname === '127.0.0.1' || 
+                         window.location.protocol === 'file:'
       ? 'http://localhost:5000/api' 
       : 'https://ai-portfolio-ynsq.onrender.com/api';
   </script>
@@ -131,21 +133,21 @@
 
       <!-- Back link -->
       <p style="text-align:center;margin-top:var(--space-lg);font-size:var(--text-sm);color:var(--clr-text-muted);">
-        <a href="/index.html" style="color:var(--clr-purple);">← Back to Portfolio</a>
+        <a href="../index.html" style="color:var(--clr-purple);">← Back to Portfolio</a>
       </p>
     </div>
   </div>
 
   <div id="toast-container"></div>
 
-    <script src="/js/error_handler.js"></script>
-  <script src="/js/main.js?v=2"></script>
-  <script src="/js/api.js?v=2"></script>
+    <script src="../js/error_handler.js"></script>
+  <script src="../js/main.js?v=2"></script>
+  <script src="../js/api.js?v=2"></script>
 
   <script>
     // Redirect if already logged in
     if (Auth.isLoggedIn()) {
-      window.location.href = '/admin/dashboard.html';
+      window.location.href = 'dashboard.html';
     }
 
     // Toggle password visibility
@@ -187,7 +189,7 @@
           badge: 'Admin Portal',
           autoClose: 1500
         });
-        setTimeout(() => window.location.href = '/admin/dashboard.html', 1500);
+        setTimeout(() => window.location.href = 'dashboard.html', 1500);
       } catch (err) {
         errDiv.style.display = 'block';
         errMsg.textContent = err.message || 'Invalid email or password.';
